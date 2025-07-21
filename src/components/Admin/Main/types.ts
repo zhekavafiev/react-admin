@@ -23,6 +23,7 @@ interface Order {
     finalSum: number,
     orderLines: OrderLine[],
     processes: Process[]
+    payments: OrderPayment[]
 }
 
 interface OrderLine {
@@ -43,4 +44,17 @@ interface Process {
     description: string,
     status: string,
     message?: string
+}
+
+interface OrderPayment {
+    id: string,
+    paymentMethodCode: string,
+    paymentType: string,
+    paymentStatus: string,
+    code: string | null,
+    transactionId: string | null,
+    amount: number,
+    isSucceed: boolean,
+    isOffline: boolean,
+    isDraft: boolean
 }

@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react'
 import OrderInfo from "./OrderInfo.tsx";
 import OrderProcesses from "./OrderProcesses.tsx";
 import OrderLines from "./OrderLines.tsx";
+import OrderPayments from "./OrderPayments.tsx";
 
 interface ContentAreaProps {
     orderData: Order | null,
@@ -70,6 +71,11 @@ function showContent(orderData: Order | null) {
         <div>
             <OrderLines
                 lines={orderData.orderLines}
+            />
+        </div>
+        <div>
+            <OrderPayments
+                payments={orderData.payments}
             />
         </div>
         <div>

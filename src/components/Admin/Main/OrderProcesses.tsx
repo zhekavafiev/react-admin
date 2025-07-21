@@ -6,14 +6,19 @@ interface OrderProcessesProps {
 }
 
 function OrderProcesses({processes}: OrderProcessesProps) {
-    return <div className={'order__processes__grid-table'}>
-        <div>ID</div><div>Команда</div><div>Событие</div><div>Описание</div><div>Статус</div><div>Сообщение</div>
-        {processes.map(process => (
-            <Fragment key={process.id}>
-                {getProcessRow(process)}
-            </Fragment>
-        ))}
-    </div>
+    return (
+        <div>
+            <h3 className={'order__payments__grid-table'}>Процессы</h3>
+            <div className={'order__processes__grid-table'}>
+                <div>ID</div><div>Команда</div><div>Событие</div><div>Описание</div><div>Статус</div><div>Сообщение</div>
+                {processes.map(process => (
+                    <Fragment key={process.id}>
+                        {getProcessRow(process)}
+                    </Fragment>
+                ))}
+            </div>
+        </div>
+    )
 }
 
 function getProcessRow(process: Process) {

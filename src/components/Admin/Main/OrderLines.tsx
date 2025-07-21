@@ -6,14 +6,19 @@ interface OrderLinesProps {
 }
 
 function OrderLines({lines}: OrderLinesProps) {
-    return <div className={'order__lines__grid-table'}>
-        <div>№</div><div>КОД</div><div>ЦЕНА</div><div>Финальная Цена</div><div>ТИП</div><div>Статус</div><div>Параметры</div><div>Скидки</div>
-        {lines.map(line => (
-            <Fragment key={line.number}>
-                {getProcessRow(line)}
-            </Fragment>
-        ))}
-    </div>
+    return (
+        <div>
+            <h3 className={'order__payments__grid-table'}>Товары</h3>
+            <div className={'order__lines__grid-table'}>
+                <div>№</div><div>КОД</div><div>ЦЕНА</div><div>Финальная Цена</div><div>ТИП</div><div>Статус</div><div>Параметры</div><div>Скидки</div>
+                {lines.map(line => (
+                    <Fragment key={line.number}>
+                        {getProcessRow(line)}
+                    </Fragment>
+                ))}
+            </div>
+        </div>
+    )
 }
 
 function getProcessRow(line: OrderLine) {
