@@ -26,9 +26,14 @@ interface Order {
 }
 
 interface OrderLine {
+    number: number,
     skuCode: string,
     price: number,
     finalPrice: number,
+    type: string,
+    status: string,
+    parameters?: object,
+    promotions: []
 }
 
 interface Process {

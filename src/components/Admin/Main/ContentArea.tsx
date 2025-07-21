@@ -3,6 +3,7 @@ import axios from 'axios'
 import { useState, useEffect } from 'react'
 import OrderInfo from "./OrderInfo.tsx";
 import OrderProcesses from "./OrderProcesses.tsx";
+import OrderLines from "./OrderLines.tsx";
 
 interface ContentAreaProps {
     orderData: Order | null,
@@ -64,6 +65,11 @@ function showContent(orderData: Order | null) {
         <div>
             <OrderInfo
                 order={orderData}
+            />
+        </div>
+        <div>
+            <OrderLines
+                lines={orderData.orderLines}
             />
         </div>
         <div>

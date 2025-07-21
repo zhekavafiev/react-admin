@@ -2,6 +2,7 @@ import './Main.css'
 import PageHeader from "./PageHeader.tsx";
 import ContentArea from "./ContentArea.tsx";
 import { useState, useEffect } from 'react'
+import OrderLines from "./OrderLines.tsx";
 
 
 interface MainProps {
@@ -15,8 +16,8 @@ function Main({text}: MainProps) {
     return <div className={'main'}>
             <PageHeader/>
             <ContentArea
-            orderData={orderData}
-            setOrderData={setOrderData}
+                orderData={orderData}
+                setOrderData={setOrderData}
             />
     </div>
 }
