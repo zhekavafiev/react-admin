@@ -1,0 +1,22 @@
+# Dockerfile для инициализации React проекта
+FROM node:20-alpine
+
+# Устанавливаем pnpm глобально ДО смены пользователя
+RUN npm install -g pnpm@8
+
+# Создаем пользователя с нужными правами
+ARG USER_ID=1000
+ARG GROUP_ID=1000
+
+RUN apk add --no-cache shadow && \
+    usermod -u ${USER_ID} node && \
+    groupmod -g ${GROUP_ID} node
+
+WORKDIR /app
+RUN chown -R node:node /app
+
+# Переключаемся на пользователя node
+USER node
+
+# Команда для создания React проекта с Vite
+CMD ["sh", "-c", "npm create vite@latest . -- --template react-ts && pnpm install"]

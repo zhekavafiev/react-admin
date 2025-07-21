@@ -1,0 +1,74 @@
+.header {
+    position: fixed;    /* Фиксируем к верху экрана */
+    top: 0;            /* Прижимаем к самому верху */
+    left: 0;           /* Прижимаем к левому краю */
+    right: 0;          /* Растягиваем на всю ширину */
+    height: 50px;      /* Фиксированная высота */
+    z-index: 1000;     /* Поверх всех элементов */
+
+    display: flex;              /* Включаем flexbox */
+    justify-content: space-between;  /* Админка слева, кнопка справа */
+    align-items: center;        /* Центрируем по вертикали */
+    padding: 0 15px;           /* Отступы по бокам */
+
+    background-color: #2d3748;  /* Темно-серый фон */
+    color: white;               /* Белый текст */
+    border-bottom: 1px solid #4a5568;  /* Тонкая граница снизу */
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1); /* Легкая тень */
+}
+
+.header__title {
+    font-size: 18px;           /* Чуть крупнее обычного текста */
+    font-weight: 600;          /* Полужирный для акцента */
+    color: white;              /* Наследуется, но лучше явно */
+}
+
+.header__title:hover {
+    cursor: default;
+    color: #54605c;
+    transition: color 0.2s linear;
+}
+.header__label {
+    font-size: 20px;           /* Чуть крупнее обычного текста */
+}
+
+.header__label:hover {
+    cursor: default;           /* Чуть крупнее обычного текста */
+}
+
+.header__button {
+    background-color: #e53e3e;  /* Красный фон */
+    color: white;               /* Белый текст */
+    border: none;               /* Убираем стандартную рамку */
+    padding: 8px 16px;          /* Внутренние отступы */
+    border-radius: 4px;         /* Скругленные углы */
+    cursor: pointer;            /* Указатель при наведении */
+    font-size: 14px;            /* Размер шрифта */
+    transition: background-color 0.2s ease;  /* Плавный переход цвета */
+}
+
+.header__left {
+    display: flex;              /* Включаем flexbox */
+    flex-direction: row;
+    align-items: center;
+    gap: 20px;
+}
+
+.header__right {
+    display: flex;              /* Включаем flexbox */
+    flex-direction: row;
+    align-items: center;
+    gap: 10px;
+}
+
+.header__name:hover {
+    cursor: pointer;
+    color: #70727a;
+    transition: color 0.2s ease;
+}
+
+@media (max-width: 768px) {
+    .header__name {
+        display: none;
+    }
+}

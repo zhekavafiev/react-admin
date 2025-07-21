@@ -1,0 +1,177 @@
+.main {
+    display: flex;
+    flex-direction: column;
+    background: #107e59;
+}
+
+.main__header {
+    /* Layout */
+    display: flex;
+    align-items: center;
+    padding: 16px 24px;
+
+    /* Цвета и фон */
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: #ffffff;
+
+    /* Тени и скругления */
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    border-bottom: 1px solid #e2e8f0;
+
+    /* Типографика */
+    font-size: 18px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+}
+
+.content__area {
+    display: flex;
+    flex-direction: column;
+    flex: 50 0 auto;
+    background: #ffffff;
+}
+
+.content__area__header {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 16px 24px;
+    background: #ffffff;
+    border-bottom: 1px solid #e2e8f0;
+    gap: 16px;
+}
+
+.content__area__header__input {
+    margin-left: 20px;
+    flex: 0 0 30%;
+
+    padding: 12px 16px;
+    border: 2px solid #e2e8f0;
+    border-radius: 8px;
+    font-size: 16px;
+
+    background: #ffffff;
+    color: #2d3748;
+
+    transition: all 0.3s ease;
+
+    outline: none;
+}
+
+.content__area__header__button {
+    flex: 0 0 10%;
+    margin-left: 20px;
+
+    /* Размеры и отступы */
+    padding: 12px 24px;
+    border: none;
+    border-radius: 8px;
+
+    /* Цвета */
+    background: linear-gradient(135deg, #4caf50 0%, #45a049 100%);
+    color: #ffffff;
+
+    /* Типографика */
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+
+    /* Плавные переходы */
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 4px rgba(76, 175, 80, 0.3);
+
+    /* Убираем outline */
+    outline: none;
+}
+
+/* Hover эффект */
+.content__area__header__button:hover {
+    background: linear-gradient(135deg, #45a049 0%, #4caf50 100%);
+    box-shadow: 0 4px 8px rgba(76, 175, 80, 0.4);
+    transform: translateY(-1px);
+}
+
+/* Active эффект */
+.content__area__header__button:active {
+    transform: translateY(0px);
+    box-shadow: 0 2px 4px rgba(76, 175, 80, 0.3);
+}
+
+/* Focus эффект */
+.content__area__header__button:focus {
+    box-shadow: 0 0 0 3px rgba(76, 175, 80, 0.2);
+}
+
+.order__info__grid-table {
+    display: grid;
+    grid-template-columns: 1fr 1fr;  /* 2 равные колонки */
+    border: 2px solid #000000;       /* Внешняя рамка */
+    border-collapse: collapse;        /* Убираем двойные границы */
+}
+
+/* Стили для всех ячеек */
+.order__info__grid-table > div {
+    border: 1px solid #000000;       /* Границы каждой ячейки */
+    padding: 8px 12px;               /* Отступы внутри ячеек */
+
+    /* Дополнительные стили */
+    background: #ffffff;
+    font-size: 14px;
+}
+
+/* Стили для заголовков (первая колонка) */
+.order__info__grid-table > div:nth-child(odd) {
+    background: #f8f9fa;
+    font-weight: 600;
+    color: #2d3748;
+}
+
+/* Стили для значений (вторая колонка) */
+.order__info__grid-table > div:nth-child(even) {
+    background: #ffffff;
+    color: #4a5568;
+}
+
+.order__processes__grid-table {
+    display: grid;
+    grid-template-columns: 2fr 2fr 2fr 3fr 1fr 1fr;
+    border: 2px solid #000000;       /* Внешняя рамка */
+    border-collapse: collapse;
+}
+
+/* Границы и отступы для всех ячеек */
+.order__processes__grid-table > div {
+    border: 1px solid #000000;      /* Границы каждой ячейки */
+    padding: 8px 12px;              /* Отступы внутри ячеек */
+    font-size: 14px;
+
+    /* Переносы для длинного текста */
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+}
+
+/* Заголовки (первая строка) */
+.order__processes__grid-table > div:nth-child(-n+6) {
+    background: #f8f9fa;
+    font-weight: 600;
+    color: #2d3748;
+}
+
+/* Стили статусов */
+.process__status__complited {
+    background: #4caf50 !important;  /* !important чтобы перебить базовый стиль */
+    color: white;
+    font-weight: 600;
+}
+
+.process__status__pending {
+    background: #e5db00 !important;
+    color: #2d3748;
+    font-weight: 600;
+}
+
+.process__status__failed {
+    background: #c7155f !important;
+    color: white;
+    font-weight: 600;
+}

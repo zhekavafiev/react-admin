@@ -1,0 +1,32 @@
+services:
+  react-admin:
+    build:
+      context: .  # Контекст - корень проекта
+      dockerfile: .docker/Dockerfile
+      args:
+        USER_ID: "${UID:-1000}"
+        GROUP_ID: "${GID:-1000}"
+    container_name: new_admin_react
+    ports:
+      - "4000:4000"  # Изменил на правильный порт 4000
+    volumes:
+      # Монтируем код для hot reload
+      - ./:/app:cached
+      # Исключаем node_modules из монтирования
+      - /app/node_modules
+    environment:
+      - NODE_ENV=development
+      - CHOKIDAR_USEPOLLING=true  # Для корректной работы hot reload в Docker
+    stdin_open: true
+    tty: true
+
+  react-init:
+    build:
+      context: .
+      dockerfile: .docker/Dockerfile.init
+    container_name: new_admin_init
+    volumes:
+      - ./:/app
+    user: "${UID:-1000}:${GID:-1000}"
+    profiles:
+      - init

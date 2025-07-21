@@ -1,0 +1,15 @@
+.admin-container {
+    display: grid;
+    grid-template-columns: 15% 85%;  /* Sidebar 20%, Main 80% */
+    margin-top: 50px;  /* Отступ под fixed Header */
+    height: calc(100vh - 50px);  /* Высота = экран минус Header */
+    width: 100%;
+    transition: grid-template-columns 0.2s ease;
+}
+
+.admin-container__collapsed {
+    grid-template-columns: 3% 97%;  /* Sidebar 20%, Main 80% */
+    transition: grid-template-columns 0.5s ease;
+}
+
+

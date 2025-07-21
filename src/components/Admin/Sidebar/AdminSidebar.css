@@ -1,0 +1,25 @@
+.sidebar {
+    display: flex;
+    flex-direction: column;
+    background: #54605c;
+    color: #ffffff;
+}
+
+.sidebar__line--collapsed:hover {
+    cursor: pointer;
+}
+
+.sidebar__line {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.sidebar__line__text {
+    opacity: 1;
+    transition: all 1s ease;
+}
+
+.sidebar__line__text--collapsed {
+    display: none;
+}
