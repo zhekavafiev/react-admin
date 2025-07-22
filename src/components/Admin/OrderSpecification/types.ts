@@ -34,7 +34,15 @@ interface OrderLine {
     type: string,
     status: string,
     parameters?: object,
-    promotions: []
+    promotions: OrderLineDiscount[]
+}
+
+interface OrderLineDiscount {
+    code: string,
+    discount: number,
+    discountPercent: number,
+    name: string,
+    type: string,
 }
 
 interface Process {

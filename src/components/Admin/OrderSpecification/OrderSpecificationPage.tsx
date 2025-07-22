@@ -1,25 +1,22 @@
-import './Main.css'
+import './OrderSpecificationPage.css'
 import PageHeader from "./PageHeader.tsx";
-import ContentArea from "./ContentArea.tsx";
+import OrderSpecificationPageContentArea from "./OrderSpecificationPageContentArea.tsx";
 import { useState, useEffect } from 'react'
-import OrderLines from "./OrderLines.tsx";
 
 
-interface MainProps {
-    text : string
-}
+interface OrderSpecificationPageProps {}
 
-function Main({text}: MainProps) {
+function OrderSpecificationPage({}: OrderSpecificationPageProps) {
 
     const [orderData, setOrderData] = useState<Order | null>(null)
 
     return <div className={'main'}>
             <PageHeader/>
-            <ContentArea
+            <OrderSpecificationPageContentArea
                 orderData={orderData}
                 setOrderData={setOrderData}
             />
     </div>
 }
 
-export default Main
+export default OrderSpecificationPage

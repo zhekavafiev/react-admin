@@ -3,16 +3,26 @@
     flex-direction: column;
     background: #54605c;
     color: #ffffff;
+    background: linear-gradient(135deg, #606462 0%, #444b48 100%);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
 .sidebar__line--collapsed:hover {
+    display: flex;
+    justify-content: center;
     cursor: pointer;
 }
 
 .sidebar__line {
     display: flex;
+    cursor: pointer;
     flex-direction: row;
-    justify-content: center;
+    gap: 20px;
+    font-size: 18px;
+    font-weight: 600;
+    padding-top: 5px;
+    padding-left: 10px;
+    /*background: #4caf50;*/
 }
 
 .sidebar__line__text {

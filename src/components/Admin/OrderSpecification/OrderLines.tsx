@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useState} from 'react'
 import { Fragment } from 'react'
 
 interface OrderLinesProps {
@@ -22,6 +22,7 @@ function OrderLines({lines}: OrderLinesProps) {
 }
 
 function getProcessRow(line: OrderLine) {
+    const discountCount = line.promotions.length
     return <>  {/* React Fragment - невидимая обертка */}
         <div>{line.number}</div>
         <div>{line.skuCode}</div>
@@ -36,7 +37,13 @@ function getProcessRow(line: OrderLine) {
             {line.status}
         </div>
         <div>Параметры</div>
-        <div>Скидки</div>
+       {
+           discountCount > 0
+               ? <div
+                   className={'order__line__promotion__text'}
+               >Скидки{`(${discountCount})`}</div>
+               : <div>Скидок нет</div>
+       }
     </>
 }
 

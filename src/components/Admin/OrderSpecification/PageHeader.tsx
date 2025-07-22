@@ -1,4 +1,4 @@
-import './Main.css'
+import './OrderSpecificationPage.css'
 
 function PageHeader() {
     return (<div className={'main__header'}>

@@ -2,8 +2,9 @@ import './Admin.css'
 import AdminHeader from "./Header";
 import {useNavigate} from 'react-router-dom'
 import AdminSidebar from "./Sidebar";
-import Main from "./Main";
+import OrderSpecificationPage from "./OrderSpecification";
 import {useSidebar} from "./hooks/useSidebar.tsx";
+import {JSX, useState} from "react";
 
 interface Admin {
 
@@ -16,6 +17,8 @@ function Admin() {
         navigate('/')
     }
 
+    const [mainComponent, setMainComponent] = useState<JSX.Element | null>(null)
+
     const {isCollapsed, toggle} = useSidebar()
 
     const className = isCollapsed
@@ -26,7 +29,6 @@ function Admin() {
         {<AdminHeader
             title={'Poison Drop'}
             short_title={'PD'}
-            userName={'Евгений Вафиев'}
             setUserName={true}
             onLogout={handleLogout}
             isCollapsed={isCollapsed}
@@ -36,10 +38,9 @@ function Admin() {
         <div className={className}>
             {<AdminSidebar
                 isCollapsed={isCollapsed}
+                setMainComponent={setMainComponent}
             />}
-            {<Main
-                text={isCollapsed ? 'Свернуть' : 'Развернуть'}
-            />}
+            {mainComponent}
         </div>
     </>
 }

@@ -1,4 +1,4 @@
-import './Main.css'
+import './OrderSpecificationPage.css'
 import axios from 'axios'
 import { useState, useEffect } from 'react'
 import OrderInfo from "./OrderInfo.tsx";
@@ -11,7 +11,7 @@ interface ContentAreaProps {
     setOrderData: (value: Order | null) => void
 }
 
-function ContentArea({orderData, setOrderData}: ContentAreaProps) {
+function OrderSpecificationPageContentArea({orderData, setOrderData}: ContentAreaProps) {
     const [orderNumber, setOrderNumber] = useState('')
 
     return (
@@ -90,4 +90,4 @@ function showContent(orderData: Order | null) {
     </div>
 }
 
-export default ContentArea
+export default OrderSpecificationPageContentArea

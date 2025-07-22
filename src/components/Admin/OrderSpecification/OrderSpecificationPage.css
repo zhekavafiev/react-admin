@@ -225,3 +225,8 @@
     font-weight: 600;
     color: #2d3748;
 }
+
+.order__line__promotion__text {
+    font-weight: 600;
+    cursor: pointer;
+}
