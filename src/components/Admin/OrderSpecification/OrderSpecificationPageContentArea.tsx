@@ -5,13 +5,16 @@ import OrderInfo from "./OrderInfo.tsx";
 import OrderProcesses from "./OrderProcesses.tsx";
 import OrderLines from "./OrderLines.tsx";
 import OrderPayments from "./OrderPayments.tsx";
+import DiscountModal from "./DiscountModal.tsx";
 
 interface ContentAreaProps {
     orderData: Order | null,
     setOrderData: (value: Order | null) => void
+    isModalOpen: boolean,
+    setModalIsOpen: (value: boolean) => void
 }
 
-function OrderSpecificationPageContentArea({orderData, setOrderData}: ContentAreaProps) {
+function OrderSpecificationPageContentArea({orderData, setOrderData, isModalOpen, setModalIsOpen}: ContentAreaProps) {
     const [orderNumber, setOrderNumber] = useState('')
 
     return (
@@ -20,9 +23,7 @@ function OrderSpecificationPageContentArea({orderData, setOrderData}: ContentAre
                 {getInput(orderNumber, setOrderNumber)}
                 {getButton(orderNumber, setOrderData)}
             </div>
-        <div>
-        </div>
-            {showContent(orderData)}
+            {showContent(orderData, isModalOpen, setModalIsOpen)}
         </div>
     )
 }
@@ -57,36 +58,36 @@ function getInput(orderNumber, setOrderNumber) {
     />
 }
 
-function showContent(orderData: Order | null) {
+function showContent(orderData: Order | null, isModalOpen, setModalIsOpen) {
+    const [lineId, setLineId] = useState<number>(0)
+
     if (orderData === null) {
         return
     }
 
-    return <div>
-        <div>
-            <OrderInfo
-                order={orderData}
-            />
-        </div>
-        <div>
-            <OrderLines
-                lines={orderData.orderLines}
-            />
-        </div>
-        <div>
-            <OrderPayments
-                payments={orderData.payments}
-            />
-        </div>
-        <div>
-            <OrderProcesses
-                processes={orderData.processes}
-            />
-        </div>
-        {orderData.orderLines.map(line => (
-            <div>{line.skuCode}: {line.finalPrice}</div>
-        ))}
+    let selectedLine = orderData.orderLines.filter(line => line.number === lineId)
 
+    let linePromotions = []
+
+    if (selectedLine.length > 0) {
+        linePromotions = selectedLine.pop().promotions
+    }
+
+    return <div>
+        <OrderInfo order={orderData}/>
+
+        <OrderLines lines={orderData.orderLines} setLineId={setLineId} setModalIsOpen={setModalIsOpen}/>
+
+        <OrderPayments payments={orderData.payments}/>
+
+        <OrderProcesses processes={orderData.processes}/>
+
+        {isModalOpen & linePromotions.length > 0 && (
+            <DiscountModal
+                promotions={linePromotions}
+                setModalIsOpen={setModalIsOpen}
+            />
+        )}
     </div>
 }
 

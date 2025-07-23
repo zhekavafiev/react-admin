@@ -19,8 +19,6 @@ function AdminHeader({
      isCollapsed,
      onToggle
 }: AdminHeaderProps) {
-    console.log(isCollapsed)
-    console.log(onToggle)
     return (
         <header className={'header'}>
             {leftSide(title, short_title, '⚙️', onToggle, isCollapsed)}

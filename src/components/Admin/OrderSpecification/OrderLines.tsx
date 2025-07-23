@@ -2,10 +2,12 @@ import React, {useState} from 'react'
 import { Fragment } from 'react'
 
 interface OrderLinesProps {
-    lines: OrderLine[]
+    lines: OrderLine[],
+    setLineId: (value: number) => void,
+    setModalIsOpen: (value: number) => void
 }
 
-function OrderLines({lines}: OrderLinesProps) {
+function OrderLines({lines, setLineId, setModalIsOpen}: OrderLinesProps) {
     return (
         <div>
             <h3 className={'order__payments__grid-table'}>Товары</h3>
@@ -13,7 +15,7 @@ function OrderLines({lines}: OrderLinesProps) {
                 <div>№</div><div>КОД</div><div>ЦЕНА</div><div>Финальная Цена</div><div>ТИП</div><div>Статус</div><div>Параметры</div><div>Скидки</div>
                 {lines.map(line => (
                     <Fragment key={line.number}>
-                        {getProcessRow(line)}
+                        {getProcessRow(line, setLineId, setModalIsOpen)}
                     </Fragment>
                 ))}
             </div>
@@ -21,7 +23,7 @@ function OrderLines({lines}: OrderLinesProps) {
     )
 }
 
-function getProcessRow(line: OrderLine) {
+function getProcessRow(line: OrderLine, setLineId, setModalIsOpen) {
     const discountCount = line.promotions.length
     return <>  {/* React Fragment - невидимая обертка */}
         <div>{line.number}</div>
@@ -39,8 +41,10 @@ function getProcessRow(line: OrderLine) {
         <div>Параметры</div>
        {
            discountCount > 0
-               ? <div
-                   className={'order__line__promotion__text'}
+               ? <div className={'order__line__promotion__text'} onClick={() => {
+                   setLineId(line.number)
+                   setModalIsOpen(true)
+               }}
                >Скидки{`(${discountCount})`}</div>
                : <div>Скидок нет</div>
        }
