@@ -28,6 +28,7 @@ interface Order {
 }
 
 interface OrderLine {
+    id: string,
     number: number,
     skuCode: string,
     price: number,
@@ -39,6 +40,7 @@ interface OrderLine {
 }
 
 interface OrderLineDiscount {
+    id: string,
     code: string,
     discount: number,
     discountPercent: number,

@@ -13,6 +13,7 @@ function DiscountModal({line, setModalIsOpen}: DiscountModalProps) {
                     <caption>Скидки линии номер {line.number} СКУ {line.skuCode}</caption>
                     <thead>
                     <tr>
+                        <th>ID</th>
                         <th>Код</th>
                         <th>Имя</th>
                         <th>Скидка</th>
@@ -23,6 +24,7 @@ function DiscountModal({line, setModalIsOpen}: DiscountModalProps) {
                     <tbody>
                     {promotions.map(promotion => {
                         return <tr key={promotion.code}>
+                            <td>{promotion.id}</td>
                             <td>{promotion.code}</td>
                             <td>{promotion.name}</td>
                             <td>{promotion.discount}</td>
