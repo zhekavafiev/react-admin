@@ -4,10 +4,11 @@ import { Fragment } from 'react'
 interface OrderLinesProps {
     lines: OrderLine[],
     setLineId: (value: number) => void,
-    setModalIsOpen: (value: number) => void
+    setDiscountModalIsOpen: (value: boolean) => void
+    setParametersModalIsOpen: (value: boolean) => void
 }
 
-function OrderLines({lines, setLineId, setModalIsOpen}: OrderLinesProps) {
+function OrderLines({lines, setLineId, setDiscountModalIsOpen, setParametersModalIsOpen}: OrderLinesProps) {
     return (
         <div>
             <h3 className={'order__payments__grid-table'}>Товары</h3>
@@ -15,7 +16,7 @@ function OrderLines({lines, setLineId, setModalIsOpen}: OrderLinesProps) {
                 <div>№</div><div>КОД</div><div>ЦЕНА</div><div>Финальная Цена</div><div>ТИП</div><div>Статус</div><div>Параметры</div><div>Скидки</div>
                 {lines.map(line => (
                     <Fragment key={line.number}>
-                        {getProcessRow(line, setLineId, setModalIsOpen)}
+                        {getProcessRow(line, setLineId, setDiscountModalIsOpen, setParametersModalIsOpen)}
                     </Fragment>
                 ))}
             </div>
@@ -23,7 +24,12 @@ function OrderLines({lines, setLineId, setModalIsOpen}: OrderLinesProps) {
     )
 }
 
-function getProcessRow(line: OrderLine, setLineId, setModalIsOpen) {
+function getProcessRow(
+    line: OrderLine,
+    setLineId: (value: number) => void,
+    setDiscountModalIsOpen: (values: boolean) => void,
+    setParametersModalIsOpen: (value: boolean) => void
+) {
     const discountCount = line.promotions.length
     return <>  {/* React Fragment - невидимая обертка */}
         <div>{line.number}</div>
@@ -38,12 +44,20 @@ function getProcessRow(line: OrderLine, setLineId, setModalIsOpen) {
         }>
             {line.status}
         </div>
-        <div>Параметры</div>
+       {
+           line.parameters !== null
+           ? <div className={'order__line__promotion__text'} onClick={() => {
+                   setLineId(line.number)
+                   setParametersModalIsOpen(true)
+               }}>Параметры</div>
+           : <div>Дополнительные параметры отсутствуют</div>
+       }
+
        {
            discountCount > 0
                ? <div className={'order__line__promotion__text'} onClick={() => {
                    setLineId(line.number)
-                   setModalIsOpen(true)
+                   setDiscountModalIsOpen(true)
                }}
                >Скидки{`(${discountCount})`}</div>
                : <div>Скидок нет</div>

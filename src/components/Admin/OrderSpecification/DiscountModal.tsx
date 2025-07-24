@@ -1,15 +1,16 @@
 
 interface DiscountModalProps {
-    promotions: OrderLineDiscount[],
+    line: OrderLine,
     setModalIsOpen: (value: boolean) => void
 }
 
-function DiscountModal({promotions, setModalIsOpen}: DiscountModalProps) {
+function DiscountModal({line, setModalIsOpen}: DiscountModalProps) {
+    const promotions=line.promotions
     return (
         <div className={'modal__background'} onClick={() => setModalIsOpen(false)}>
             <div className={'modal'}>
                 <table>
-                    <caption></caption>
+                    <caption>Скидки линии номер {line.number} СКУ {line.skuCode}</caption>
                     <thead>
                     <tr>
                         <th>Код</th>

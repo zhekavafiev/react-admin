@@ -23,7 +23,8 @@ interface Order {
     finalSum: number,
     orderLines: OrderLine[],
     processes: Process[]
-    payments: OrderPayment[]
+    payments: OrderPayment[],
+    boughtDeposit: BoughtDeposit[]
 }
 
 interface OrderLine {
@@ -33,7 +34,7 @@ interface OrderLine {
     finalPrice: number,
     type: string,
     status: string,
-    parameters?: object,
+    parameters: object | null,
     promotions: OrderLineDiscount[]
 }
 
@@ -51,7 +52,8 @@ interface Process {
     event: string
     description: string,
     status: string,
-    message?: string
+    message: string | null,
+    dt: string
 }
 
 interface OrderPayment {
@@ -65,4 +67,11 @@ interface OrderPayment {
     isSucceed: boolean,
     isOffline: boolean,
     isDraft: boolean
+}
+
+interface BoughtDeposit {
+    id: string,
+    number: number,
+    price: number,
+    parameters: object | null
 }

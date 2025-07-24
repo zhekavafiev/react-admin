@@ -10,7 +10,7 @@ function OrderProcesses({processes}: OrderProcessesProps) {
         <div>
             <h3 className={'order__payments__grid-table'}>Процессы</h3>
             <div className={'order__processes__grid-table'}>
-                <div>ID</div><div>Команда</div><div>Событие</div><div>Описание</div><div>Статус</div><div>Сообщение</div>
+                <div>ID</div><div>Время</div><div>Команда</div><div>Событие</div><div>Описание</div><div>Статус</div><div>Сообщение</div>
                 {processes.map(process => (
                     <Fragment key={process.id}>
                         {getProcessRow(process)}
@@ -28,6 +28,7 @@ function getProcessRow(process: Process) {
 
     return <>  {/* React Fragment - невидимая обертка */}
         <div>{process.id}</div>
+        <div>{process.dt}</div>
         <div>{splitCommand.at(-1)}</div>
         <div>{splitEvent.at(-1)}</div>
         <div>{process.description}</div>
