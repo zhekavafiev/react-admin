@@ -178,7 +178,7 @@
 
 .order__lines__grid-table {
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+    grid-template-columns: 2fr 1fr 2fr 1fr 1fr 1fr 2fr 3fr 2fr;
     border: 2px solid #000000;       /* Внешняя рамка */
     border-collapse: collapse;
 }
