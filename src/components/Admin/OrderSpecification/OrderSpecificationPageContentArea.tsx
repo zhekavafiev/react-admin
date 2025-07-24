@@ -13,11 +13,13 @@ import OrderDepositModal from "./OrderDepositModal.tsx";
 interface ContentAreaProps {
     orderData: Order | null,
     setOrderData: (value: Order | null) => void
+    setCollapseSideBar: () => void
 }
 
 function OrderSpecificationPageContentArea({
     orderData,
     setOrderData,
+    setCollapseSideBar
 }: ContentAreaProps) {
     const [orderNumber, setOrderNumber] = useState('')
 
@@ -25,14 +27,14 @@ function OrderSpecificationPageContentArea({
         <div className={'content__area'}>
             <div className={'content__area__header'}>
                 {getInput(orderNumber, setOrderNumber)}
-                {getButton(orderNumber, setOrderData)}
+                {getButton(orderNumber, setOrderData, setCollapseSideBar)}
             </div>
             {showContent(orderData)}
         </div>
     )
 }
 
-function getButton(orderNumber: string, setOrderData: (value: Order) => void) {
+function getButton(orderNumber: string, setOrderData: (value: Order) => void, setCollapseSideBar: () => void) {
     const fetchOrder = () => {
         // TODO сделать catch блок
         axios.get(`/api/v1/order/specification?orderNumber=${orderNumber}`).then(response => {
@@ -40,13 +42,13 @@ function getButton(orderNumber: string, setOrderData: (value: Order) => void) {
             if (apiResponse.success) {
                 const order: Order = apiResponse.data
                 setOrderData(order)
+                setCollapseSideBar()
             }
         })
     }
-
     return <button
         className={'content__area__header__button'}
-        onClick={fetchOrder}
+        onClick={() => fetchOrder()}
     >
         Получить данные
     </button>

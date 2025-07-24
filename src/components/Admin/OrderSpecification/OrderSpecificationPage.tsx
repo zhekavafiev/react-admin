@@ -4,9 +4,11 @@ import OrderSpecificationPageContentArea from "./OrderSpecificationPageContentAr
 import { useState, useEffect } from 'react'
 
 
-interface OrderSpecificationPageProps {}
+interface OrderSpecificationPageProps {
+    setCollapseSideBar: () => void
+}
 
-function OrderSpecificationPage({}: OrderSpecificationPageProps) {
+function OrderSpecificationPage({setCollapseSideBar}: OrderSpecificationPageProps) {
 
     const [orderData, setOrderData] = useState<Order | null>(null)
     return <div className={'main'}>
@@ -14,6 +16,7 @@ function OrderSpecificationPage({}: OrderSpecificationPageProps) {
             <OrderSpecificationPageContentArea
                 orderData={orderData}
                 setOrderData={setOrderData}
+                setCollapseSideBar={setCollapseSideBar}
             />
     </div>
 }

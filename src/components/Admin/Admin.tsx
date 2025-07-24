@@ -17,9 +17,9 @@ function Admin() {
         navigate('/')
     }
 
-    const [mainComponent, setMainComponent] = useState<JSX.Element | null>(null)
-
     const {isCollapsed, toggle} = useSidebar()
+
+    const [mainComponent, setMainComponent] = useState<JSX.Element | null>(null)
 
     const className = isCollapsed
         ? 'admin-container admin-container__collapsed'
@@ -39,6 +39,7 @@ function Admin() {
             {<AdminSidebar
                 isCollapsed={isCollapsed}
                 setMainComponent={setMainComponent}
+                setCollapseSideBar={toggle}
             />}
             {mainComponent}
         </div>
