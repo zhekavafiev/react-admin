@@ -12,7 +12,7 @@ function AdminSidebar({isCollapsed, setMainComponent}: AdminSidebar) {
     {console.log(className)}
     return <div className={'sidebar'}>
         <div className={'sidebar__line'}>
-            <div>📦</div>
+            <div onClick={() => setMainComponent(<OrderSpecificationPage/>)}>📦</div>
             <div className={className} onClick={() => setMainComponent(<OrderSpecificationPage/>)}>Заказы</div>
         </div>
     </div>
