@@ -1,7 +1,8 @@
 import './OrderSpecificationPage.css'
 import PageHeader from "./PageHeader.tsx";
 import OrderSpecificationPageContentArea from "./OrderSpecificationPageContentArea.tsx";
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
+import type {Order} from './types'
 
 
 interface OrderSpecificationPageProps {

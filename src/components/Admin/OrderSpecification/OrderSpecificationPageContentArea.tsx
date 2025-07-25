@@ -1,6 +1,5 @@
 import './OrderSpecificationPage.css'
-import axios from 'axios'
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 import OrderInfo from "./OrderInfo.tsx";
 import OrderProcesses from "./OrderProcesses.tsx";
 import OrderLines from "./OrderLines.tsx";
@@ -9,6 +8,10 @@ import DiscountModal from "./DiscountModal.tsx";
 import OrderLineParametersModal from "./OrderLineParametersModal.tsx";
 import BoughtDeposits from "./OrderBoughtDeposits.tsx";
 import OrderDepositModal from "./OrderDepositModal.tsx";
+import AppliedDeposits from "./AppliedDeposits.tsx";
+import Input from "./Input.tsx";
+import type {Order} from './types'
+import Button from "./Button.tsx";
 
 interface ContentAreaProps {
     orderData: Order | null,
@@ -26,45 +29,15 @@ function OrderSpecificationPageContentArea({
     return (
         <div className={'content__area'}>
             <div className={'content__area__header'}>
-                {getInput(orderNumber, setOrderNumber)}
-                {getButton(orderNumber, setOrderData, setCollapseSideBar)}
+                <Input orderNumber={orderNumber} setOrderNumber={setOrderNumber}/>
+                <Button orderNumber={orderNumber} setOrderData={setOrderData} setCollapseSideBar={setCollapseSideBar}/>
             </div>
-            {showContent(orderData)}
+            {ShowContent(orderData, orderNumber, setOrderData)}
         </div>
     )
 }
 
-function getButton(orderNumber: string, setOrderData: (value: Order) => void, setCollapseSideBar: () => void) {
-    const fetchOrder = () => {
-        // TODO сделать catch блок
-        axios.get(`/api/v1/order/specification?orderNumber=${orderNumber}`).then(response => {
-            const apiResponse: ApiResponse<Order> = response.data
-            if (apiResponse.success) {
-                const order: Order = apiResponse.data
-                setOrderData(order)
-                setCollapseSideBar()
-            }
-        })
-    }
-    return <button
-        className={'content__area__header__button'}
-        onClick={() => fetchOrder()}
-    >
-        Получить данные
-    </button>
-}
-
-function getInput(orderNumber: string, setOrderNumber: (value: string) => void) {
-    return <input
-        className={'content__area__header__input'}
-        type={'text'}
-        value={orderNumber}
-        onChange={(e) => setOrderNumber(e.target.value)}
-        placeholder={'Номер заказа'}
-    />
-}
-
-function showContent(orderData: Order | null,) {
+function ShowContent(orderData: Order | null, orderNumber: string, setOrderData: (value: Order) => void) {
     const [isDiscountModalOpen, setDiscountModalIsOpen] = useState<boolean>(false)
     const [isParametersModalOpen, setParametersModalIsOpen] = useState<boolean>(false)
     const [isDepositModalOpen, setDepositModalIsOpen] = useState<boolean>(false)
@@ -76,49 +49,41 @@ function showContent(orderData: Order | null,) {
         return
     }
 
-    let selectedLine = getSelectedLine(orderData, lineId)
-    let selectedDeposit = getSelectedBoughtDeposit(orderData, boughtDepositId)
+    const selectedLine = getSelectedLine(orderData, lineId)
+    const selectedDeposit = getSelectedBoughtDeposit(orderData, boughtDepositId)
 
     return <div>
         <OrderInfo order={orderData}/>
 
-        {
-            orderData.orderLines.length > 0 && (
-                <OrderLines
-                    lines={orderData.orderLines}
-                    setLineId={setLineId}
-                    setDiscountModalIsOpen={setDiscountModalIsOpen}
-                    setParametersModalIsOpen={setParametersModalIsOpen}
-                />
-            )
-        }
+        {orderData.orderLines.length > 0 && (<OrderLines
+                lines={orderData.orderLines}
+                setLineId={setLineId}
+                setDiscountModalIsOpen={setDiscountModalIsOpen}
+                setParametersModalIsOpen={setParametersModalIsOpen}
+        />)}
 
-        {
-            orderData.boughtDeposit.length > 0 && (
-                <BoughtDeposits
-                    deposits={orderData.boughtDeposit}
-                    setBoughtDepositId={setBoughtDepositId}
-                    setDepositModalIsOpen={setDepositModalIsOpen}
-                />
-            )
-        }
+        {orderData.boughtDeposit.length > 0 && (<BoughtDeposits
+                deposits={orderData.boughtDeposit}
+                setBoughtDepositId={setBoughtDepositId}
+                setDepositModalIsOpen={setDepositModalIsOpen}
+        />)}
+
+        {orderData.appliedDeposit.length > 0 && (<AppliedDeposits deposits={orderData.appliedDeposit}/>)}
 
         <OrderPayments payments={orderData.payments}/>
 
-        <OrderProcesses processes={orderData.processes}/>
+        <OrderProcesses processes={orderData.processes} orderNumber={orderNumber} setOrderData={setOrderData}/>
 
-        {isDiscountModalOpen & selectedLine !== null && (
-            <DiscountModal
+        {isDiscountModalOpen && selectedLine !== null && (<DiscountModal
                 line={selectedLine}
                 setModalIsOpen={setDiscountModalIsOpen}
-            />
-        )}
+        />)}
 
-        {isParametersModalOpen & selectedLine !== null && (
+        {isParametersModalOpen && selectedLine !== null && (
             <OrderLineParametersModal line={selectedLine} setParametersModalIsOpen={setParametersModalIsOpen}/>
         )}
 
-        {isDepositModalOpen & selectedDeposit!== null && (
+        {isDepositModalOpen && selectedDeposit!== null && (
             <OrderDepositModal deposit={selectedDeposit} setDepositModalIsOpen={setDepositModalIsOpen}/>
         )}
     </div>
@@ -128,7 +93,7 @@ function showContent(orderData: Order | null,) {
 function getSelectedLine(orderData: Order, lineId: number) {
     let selectedLine = null
 
-    let selectedLines = orderData.orderLines.filter(line => line.number === lineId)
+    const selectedLines = orderData.orderLines.filter(line => line.number === lineId)
     if (selectedLines.length > 0) {
         selectedLine = selectedLines.shift()
     }
@@ -139,7 +104,7 @@ function getSelectedLine(orderData: Order, lineId: number) {
 function getSelectedBoughtDeposit(orderData: Order, depositId: number) {
     let selectedDeposit = null
 
-    let selectedDeposits = orderData.boughtDeposit.filter(line => line.number === depositId)
+    const selectedDeposits = orderData.boughtDeposit.filter(line => line.number === depositId)
     if (selectedDeposits.length > 0) {
         selectedDeposit = selectedDeposits.shift()
     }

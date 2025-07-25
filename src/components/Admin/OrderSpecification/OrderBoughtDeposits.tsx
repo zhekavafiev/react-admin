@@ -1,5 +1,5 @@
-import React, {useState} from 'react'
 import { Fragment } from 'react'
+import type {BoughtDeposit} from './types'
 
 interface BoughtDepositsProps {
     deposits: BoughtDeposit[],

@@ -1,10 +1,10 @@
-interface ApiResponse<T> {
+export interface ApiResponse<T> {
     success: boolean,
     data: T,
     message?: string
 }
 
-interface Order {
+export interface Order {
     id: string,
     orderNumber: string,
     userId: string,
@@ -24,10 +24,16 @@ interface Order {
     orderLines: OrderLine[],
     processes: Process[]
     payments: OrderPayment[],
-    boughtDeposit: BoughtDeposit[]
+    boughtDeposit: BoughtDeposit[],
+    appliedDeposit: AppliedDeposit[]
 }
 
-interface OrderLine {
+export interface AppliedDeposit {
+    id: string,
+    code: string,
+    amount: string
+}
+export interface OrderLine {
     id: string,
     number: number,
     skuCode: string,
@@ -39,7 +45,7 @@ interface OrderLine {
     promotions: OrderLineDiscount[]
 }
 
-interface OrderLineDiscount {
+export interface OrderLineDiscount {
     id: string,
     code: string,
     discount: number,
@@ -48,7 +54,7 @@ interface OrderLineDiscount {
     type: string,
 }
 
-interface Process {
+export interface Process {
     id: string,
     command: string,
     event: string
@@ -58,7 +64,7 @@ interface Process {
     dt: string
 }
 
-interface OrderPayment {
+export interface OrderPayment {
     id: string,
     paymentMethodCode: string,
     paymentType: string,
@@ -71,7 +77,7 @@ interface OrderPayment {
     isDraft: boolean
 }
 
-interface BoughtDeposit {
+export interface BoughtDeposit {
     id: string,
     number: number,
     price: number,

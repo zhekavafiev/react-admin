@@ -19,6 +19,8 @@ services:
       - CHOKIDAR_USEPOLLING=true  # Для корректной работы hot reload в Docker
     stdin_open: true
     tty: true
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
 
   react-init:
     build:
