@@ -47,14 +47,15 @@ function getProcessRow(process: Process, orderNumber: string, setOrderData: (val
     }
 
     return <>  {/* React Fragment - невидимая обертка */}
-        <div onClick={() => sendRestartProcessRequest(process.id)}>{process.id}</div>
+        <div>{process.id}</div>
         <div>{process.dt}</div>
         <div>{splitCommand.at(-1)}</div>
         <div>{splitEvent.at(-1)}</div>
         <div>{process.description}</div>
         <div className={status === 'completed' ? 'process__status__complited'
-            : status === 'failed' ? 'process__status__failed' : 'process__status__pending'
-        }>
+            : status === 'failed' ? 'process__status__failed' : 'process__status__pending'}
+            onClick={status === 'failed' ? () => sendRestartProcessRequest(process.id) : () => null }
+        >
             {process.status}
         </div>
         <div>{process.message}</div>
