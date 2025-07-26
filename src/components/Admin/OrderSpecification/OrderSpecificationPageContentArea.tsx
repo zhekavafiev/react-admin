@@ -12,6 +12,7 @@ import AppliedDeposits from "./AppliedDeposits.tsx";
 import Input from "./Input.tsx";
 import type {Order} from './types'
 import Button from "./Button.tsx";
+import ProcessContextModal from "./ProcessContextModal.tsx";
 
 interface ContentAreaProps {
     orderData: Order | null,
@@ -41,14 +42,17 @@ function ShowContent(orderData: Order | null, orderNumber: string, setOrderData:
     const [isDiscountModalOpen, setDiscountModalIsOpen] = useState<boolean>(false)
     const [isParametersModalOpen, setParametersModalIsOpen] = useState<boolean>(false)
     const [isDepositModalOpen, setDepositModalIsOpen] = useState<boolean>(false)
+    const [isProcessModalOpen, setIsProcessModalOpen] = useState<boolean>(false)
 
     const [lineId, setLineId] = useState<number>(0)
     const [boughtDepositId, setBoughtDepositId] = useState<number>(0)
+    const [processId, setProcessId] = useState<string>('')
 
     if (orderData === null) {
         return
     }
 
+    const selectedProcess = getSelectedProcess(orderData, processId)
     const selectedLine = getSelectedLine(orderData, lineId)
     const selectedDeposit = getSelectedBoughtDeposit(orderData, boughtDepositId)
 
@@ -72,7 +76,12 @@ function ShowContent(orderData: Order | null, orderNumber: string, setOrderData:
 
         <OrderPayments payments={orderData.payments}/>
 
-        <OrderProcesses processes={orderData.processes} orderNumber={orderNumber} setOrderData={setOrderData}/>
+        <OrderProcesses
+            processes={orderData.processes}
+            orderNumber={orderNumber}
+            setOrderData={setOrderData}
+            setProcessId={setProcessId}
+            setContextModalIsOpen={setIsProcessModalOpen}/>
 
         {isDiscountModalOpen && selectedLine !== null && (<DiscountModal
                 line={selectedLine}
@@ -85,6 +94,10 @@ function ShowContent(orderData: Order | null, orderNumber: string, setOrderData:
 
         {isDepositModalOpen && selectedDeposit!== null && (
             <OrderDepositModal deposit={selectedDeposit} setDepositModalIsOpen={setDepositModalIsOpen}/>
+        )}
+
+        {isProcessModalOpen && selectedProcess && (
+            <ProcessContextModal process={selectedProcess} setContextModalIsOpen={setIsProcessModalOpen}/>
         )}
     </div>
 }
@@ -111,5 +124,16 @@ function getSelectedBoughtDeposit(orderData: Order, depositId: number) {
 
     return selectedDeposit
 }
+function getSelectedProcess(orderData: Order, processId: string) {
+    let selectedProcess = null
+
+    const selectedProcesses = orderData.processes.filter(process => process.id === processId)
+    if (selectedProcesses.length > 0) {
+        selectedProcess = selectedProcesses.shift()
+    }
+
+    return selectedProcess
+}
+
 
 export default OrderSpecificationPageContentArea

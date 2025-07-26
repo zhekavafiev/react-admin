@@ -62,6 +62,7 @@ export interface Process {
     status: string,
     message: string | null,
     dt: string
+    context: []
 }
 
 export interface OrderPayment {

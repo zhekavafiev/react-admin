@@ -1,5 +1,6 @@
 import './types.ts'
 import {fetchOrderByNumber} from "../services/orderService.tsx";
+import type {Order} from "./types.ts";
 
 interface ButtonProps {
     orderNumber: string,
@@ -18,7 +19,7 @@ function Button({
         setCollapseSideBar()
     }
     return <button
-        className={'content__area__header__button'}
+        className={'content__area__header__button clickable'}
         onClick={() => fetchOrder()}
     >
         Получить данные

@@ -1,5 +1,6 @@
 import { Fragment } from 'react'
 import type {AppliedDeposit} from './types'
+
 interface AppliedDepositsProps {
     deposits: AppliedDeposit[],
 }

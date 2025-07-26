@@ -1,5 +1,5 @@
-import React, {useState} from 'react'
 import { Fragment } from 'react'
+import type {OrderLine} from './types.ts'
 
 interface OrderLinesProps {
     lines: OrderLine[],
@@ -47,7 +47,7 @@ function getProcessRow(
         </div>
        {
            line.parameters !== null
-           ? <div className={'order__line__promotion__text'} onClick={() => {
+           ? <div className={'clickable'} onClick={() => {
                    setLineId(line.number)
                    setParametersModalIsOpen(true)
                }}>Параметры</div>
@@ -56,7 +56,7 @@ function getProcessRow(
 
        {
            discountCount > 0
-               ? <div className={'order__line__promotion__text'} onClick={() => {
+               ? <div className={'clickable'} onClick={() => {
                    setLineId(line.number)
                    setDiscountModalIsOpen(true)
                }}

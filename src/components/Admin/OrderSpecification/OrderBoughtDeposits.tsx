@@ -35,7 +35,7 @@ function getDeposits(
         <div>{deposit.price}</div>
         {
             hasParameters
-            ? <div className={'order__deposit__text'} onClick={() => {
+            ? <div className={'clickable'} onClick={() => {
                     setDepositModalIsOpen(true)
                     setBoughtDepositId(deposit.number)
                 }}>Параметры</div>

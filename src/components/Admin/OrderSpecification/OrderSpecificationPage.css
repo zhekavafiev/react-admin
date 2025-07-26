@@ -71,11 +71,6 @@
     background: linear-gradient(135deg, #4caf50 0%, #45a049 100%);
     color: #ffffff;
 
-    /* Типографика */
-    font-size: 16px;
-    font-weight: 600;
-    cursor: pointer;
-
     /* Плавные переходы */
     transition: all 0.3s ease;
     box-shadow: 0 2px 4px rgba(76, 175, 80, 0.3);
@@ -164,6 +159,12 @@
     font-weight: 300;
 }
 
+.process__status__loading {
+    background: rgb(255, 255, 255) !important;  /* !important чтобы перебить базовый стиль */
+    color: #ffffff;
+    font-weight: 0;
+}
+
 .process__status__pending {
     background: rgba(229, 219, 0, 0.32) !important;
     color: #000000;
@@ -224,11 +225,6 @@
     background: #f8f9fa;
     font-weight: 600;
     color: #2d3748;
-}
-
-.order__line__promotion__text {
-    font-weight: 600;
-    cursor: pointer;
 }
 
 .modal__background {
@@ -321,11 +317,6 @@
     color: #2d3748;
 }
 
-.order__deposit__text {
-    font-weight: 600;
-    cursor: pointer;
-}
-
 .order__applied__deposit__grid-table {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
@@ -349,4 +340,10 @@
     background: #f8f9fa;
     font-weight: 600;
     color: #2d3748;
+}
+
+.clickable {
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
 }

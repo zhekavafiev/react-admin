@@ -1,4 +1,3 @@
-
 interface DiscountModalProps {
     line: OrderLine,
     setModalIsOpen: (value: boolean) => void
