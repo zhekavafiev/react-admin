@@ -347,3 +347,19 @@
     font-weight: 600;
     cursor: pointer;
 }
+
+.error {
+    position: fixed;
+    background-color: rgba(245, 0, 0, 0.51);
+    top: 120px;
+    right: 0;
+    min-width: 200px;
+    min-height: 20px;
+    max-width: 50%;
+    max-height: 10%;
+    border: 1px solid #2d3748;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    border-radius: 4px;
+    padding: 10px 30px;
+}

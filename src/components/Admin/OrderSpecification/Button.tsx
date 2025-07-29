@@ -5,22 +5,24 @@ import type {Order} from "./types.ts";
 interface ButtonProps {
     orderNumber: string,
     setOrderData: (value: Order) => void,
-    setCollapseSideBar: () => void
+    setCollapseSideBar: () => void,
+    setErrorMessage: (value: string) => void,
 }
 
-function Button({
-    orderNumber,
-    setOrderData,
-    setCollapseSideBar
-}: ButtonProps) {
+function Button({ orderNumber, setOrderData, setCollapseSideBar, setErrorMessage }: ButtonProps) {
     const fetchOrder = async () => {
-        const order = await fetchOrderByNumber(orderNumber)
-        setOrderData(order)
-        setCollapseSideBar()
+        try {
+            const order = await fetchOrderByNumber(orderNumber)
+            setOrderData(order)
+            setCollapseSideBar()
+        } catch (e) {
+            setErrorMessage(e.message)
+        }
     }
+
     return <button
         className={'content__area__header__button clickable'}
-        onClick={() => fetchOrder()}
+        onClick={fetchOrder}
     >
         Получить данные
     </button>

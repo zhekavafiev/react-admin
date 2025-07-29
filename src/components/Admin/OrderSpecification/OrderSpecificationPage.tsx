@@ -13,7 +13,7 @@ function OrderSpecificationPage({setCollapseSideBar}: OrderSpecificationPageProp
 
     const [orderData, setOrderData] = useState<Order | null>(null)
     return <div className={'main'}>
-            <PageHeader/>
+        <PageHeader/>
             <OrderSpecificationPageContentArea
                 orderData={orderData}
                 setOrderData={setOrderData}

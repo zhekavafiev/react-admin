@@ -10,7 +10,6 @@ interface AdminSidebar {
 
 function AdminSidebar({isCollapsed, setMainComponent, setCollapseSideBar}: AdminSidebar) {
     let className = isCollapsed ? 'sidebar__line__text--collapsed' : 'sidebar__line__text'
-    {console.log(className)}
     return <div className={'sidebar'}>
         <div className={'sidebar__line'}>
             <div onClick={() => setMainComponent(<OrderSpecificationPage setCollapseSideBar={setCollapseSideBar}/>)}>📦</div>

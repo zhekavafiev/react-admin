@@ -26,12 +26,19 @@ function OrderSpecificationPageContentArea({
     setCollapseSideBar
 }: ContentAreaProps) {
     const [orderNumber, setOrderNumber] = useState('')
-
+    const [errorMessage, setErrorMessage] = useState<string>('')
+    console.log(errorMessage)
     return (
         <div className={'content__area'}>
+            {errorMessage.length !== 0 && <Error message={errorMessage}/>}
             <div className={'content__area__header'}>
                 <Input orderNumber={orderNumber} setOrderNumber={setOrderNumber}/>
-                <Button orderNumber={orderNumber} setOrderData={setOrderData} setCollapseSideBar={setCollapseSideBar}/>
+                <Button
+                    orderNumber={orderNumber}
+                    setOrderData={setOrderData}
+                    setCollapseSideBar={setCollapseSideBar}
+                    setErrorMessage={setErrorMessage}
+                />
             </div>
             {ShowContent(orderData, orderNumber, setOrderData)}
         </div>
@@ -124,16 +131,20 @@ function getSelectedBoughtDeposit(orderData: Order, depositId: number) {
 
     return selectedDeposit
 }
+
 function getSelectedProcess(orderData: Order, processId: string) {
     let selectedProcess = null
 
     const selectedProcesses = orderData.processes.filter(process => process.id === processId)
     if (selectedProcesses.length > 0) {
         selectedProcess = selectedProcesses.shift()
-    }
+        }
 
     return selectedProcess
 }
 
+function Error({message}: {message: string}) {
+    return <div className={'error'}>{message}</div>
+}
 
 export default OrderSpecificationPageContentArea
