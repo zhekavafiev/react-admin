@@ -1,0 +1,26 @@
+.error {
+    position: fixed;
+    top: 130px;
+    right: 20px;
+    background: #f87171;
+    color: white;
+    padding: 12px 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    z-index: 1000;
+
+    /* Анимация */
+    transition: all 0.7s ease-in-out;
+    transform: translateX(100%);
+    opacity: 0;
+}
+
+.error--visible {
+    transform: translateX(0);
+    opacity: 1;
+}
+
+.error--hidden {
+    transform: translateX(100%);
+    opacity: 0;
+}

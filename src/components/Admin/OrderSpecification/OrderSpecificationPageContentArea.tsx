@@ -13,6 +13,7 @@ import Input from "./Input.tsx";
 import type {Order} from './types'
 import Button from "./Button.tsx";
 import ProcessContextModal from "./ProcessContextModal.tsx";
+import ErrorFlash from '../../Error/ErrorFlash.tsx';
 
 interface ContentAreaProps {
     orderData: Order | null,
@@ -27,10 +28,10 @@ function OrderSpecificationPageContentArea({
 }: ContentAreaProps) {
     const [orderNumber, setOrderNumber] = useState('')
     const [errorMessage, setErrorMessage] = useState<string>('')
-    console.log(errorMessage)
+
     return (
         <div className={'content__area'}>
-            {errorMessage.length !== 0 && <Error message={errorMessage}/>}
+            {errorMessage.length !== 0 && <ErrorFlash message={errorMessage} setErrorMessage={setErrorMessage}/>}
             <div className={'content__area__header'}>
                 <Input orderNumber={orderNumber} setOrderNumber={setOrderNumber}/>
                 <Button
@@ -141,10 +142,6 @@ function getSelectedProcess(orderData: Order, processId: string) {
         }
 
     return selectedProcess
-}
-
-function Error({message}: {message: string}) {
-    return <div className={'error'}>{message}</div>
 }
 
 export default OrderSpecificationPageContentArea
