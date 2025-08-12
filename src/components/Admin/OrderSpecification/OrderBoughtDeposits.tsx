@@ -28,6 +28,11 @@ function getDeposits(
     setBoughtDepositId: (value: number) => void,
     setDepositModalIsOpen: (value: boolean) => void
 ) {
+    const handleClick = () => {
+        setDepositModalIsOpen(true)
+        setBoughtDepositId(deposit.number)
+    }
+
     const hasParameters = deposit.parameters !== null
     return <>
         <div>{deposit.number}</div>
@@ -35,10 +40,7 @@ function getDeposits(
         <div>{deposit.price}</div>
         {
             hasParameters
-            ? <div className={'clickable'} onClick={() => {
-                    setDepositModalIsOpen(true)
-                    setBoughtDepositId(deposit.number)
-                }}>Параметры</div>
+            ? <div className={'clickable'} onClick={() => handleClick()}>Параметры</div>
             : <div>Параметров нет</div>
         }
     </>

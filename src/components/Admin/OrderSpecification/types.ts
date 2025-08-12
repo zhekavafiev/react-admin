@@ -19,6 +19,7 @@ export interface Order {
     createdAt: string,
     communicationMethod?: string,
     hasCalculation: boolean,
+    isAbandoned: boolean | null,
     sum: number,
     finalSum: number,
     orderLines: OrderLine[],

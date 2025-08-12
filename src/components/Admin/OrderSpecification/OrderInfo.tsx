@@ -5,9 +5,17 @@ interface OrderInfoProps {
 }
 
 function OrderInfo({order}: OrderInfoProps) {
+
+    let header = ''
+
+    if (order.isAbandoned) {
+        header = 'Информация по заказу. Заказ брошен'
+    } else {
+        header = 'Информация по заказу'
+    }
     return (
         <div>
-            <h3 className={'order__payments__grid-table'}>Информация по заказу</h3>
+            <h3 className={'order__payments__grid-table'}>{header}</h3>
             <div className="order__info__grid-table">
                 <div>ID</div><div>{order.id}</div>
                 <div>Номер</div><div>{order.orderNumber}</div>

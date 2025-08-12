@@ -20,10 +20,7 @@ function Button({ orderNumber, setOrderData, setCollapseSideBar, setErrorMessage
         }
     }
 
-    return <button
-        className={'content__area__header__button clickable'}
-        onClick={fetchOrder}
-    >
+    return <button className={'content__area__header__button clickable'} onClick={fetchOrder}>
         Получить данные
     </button>
 }

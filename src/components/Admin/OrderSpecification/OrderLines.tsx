@@ -30,8 +30,18 @@ function getProcessRow(
     setDiscountModalIsOpen: (values: boolean) => void,
     setParametersModalIsOpen: (value: boolean) => void
 ) {
+    const onParametersClick = () => {
+        setLineId(line.number)
+        setParametersModalIsOpen(true)
+    }
+
+    const onDiscountClick = () => {
+        setLineId(line.number)
+        setDiscountModalIsOpen(true)
+    }
+
     const discountCount = line.promotions.length
-    return <>  {/* React Fragment - невидимая обертка */}
+    return <>
         <div>{line.id}</div>
         <div>{line.number}</div>
         <div>{line.skuCode}</div>
@@ -47,20 +57,13 @@ function getProcessRow(
         </div>
        {
            line.parameters !== null
-           ? <div className={'clickable'} onClick={() => {
-                   setLineId(line.number)
-                   setParametersModalIsOpen(true)
-               }}>Параметры</div>
+           ? <div className={'clickable'} onClick={() => onParametersClick()}>Параметры</div>
            : <div>Дополнительные параметры отсутствуют</div>
        }
 
        {
            discountCount > 0
-               ? <div className={'clickable'} onClick={() => {
-                   setLineId(line.number)
-                   setDiscountModalIsOpen(true)
-               }}
-               >Скидки{`(${discountCount})`}</div>
+               ? <div className={'clickable'} onClick={() => onDiscountClick()}>Скидки{`(${discountCount})`}</div>
                : <div>Скидок нет</div>
        }
     </>
