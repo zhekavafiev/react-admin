@@ -72,6 +72,9 @@ function ShowContent(orderData: Order | null, orderNumber: string, setOrderData:
     return <div>
         <OrderInfo order={orderData}/>
 
+        {orderData.updateHistory.length > 0 && (<History histories={orderData.updateHistory} setHistoryId={setHistoryId} setIsHistoryModalOpen={setIsHistoryModalOpen}/>)}
+        <OrderPayments payments={orderData.payments}/>
+        
         {orderData.orderLines.length > 0 && (<OrderLines
                 lines={orderData.orderLines}
                 setLineId={setLineId}
@@ -86,9 +89,6 @@ function ShowContent(orderData: Order | null, orderNumber: string, setOrderData:
         />)}
 
         {orderData.appliedDeposit.length > 0 && (<AppliedDeposits deposits={orderData.appliedDeposit}/>)}
-
-        {orderData.updateHistory.length > 0 && (<History histories={orderData.updateHistory} setHistoryId={setHistoryId} setIsHistoryModalOpen={setIsHistoryModalOpen}/>)}
-        <OrderPayments payments={orderData.payments}/>
 
         <OrderProcesses
             processes={orderData.processes}
