@@ -27,6 +27,14 @@ export interface Order {
     payments: OrderPayment[],
     boughtDeposit: BoughtDeposit[],
     appliedDeposit: AppliedDeposit[]
+    updateHistory: History[]
+}
+
+export interface History {
+    id: string,
+    source: string,
+    dt: string,
+    change: object
 }
 
 export interface AppliedDeposit {

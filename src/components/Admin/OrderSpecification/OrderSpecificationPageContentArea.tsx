@@ -14,6 +14,8 @@ import type {Order} from './types'
 import Button from "./Button.tsx";
 import ProcessContextModal from "./ProcessContextModal.tsx";
 import ErrorFlash from '../../Error/ErrorFlash.tsx';
+import History from "./History.tsx";
+import HistoryModal from "./HistoryModal.tsx";
 
 interface ContentAreaProps {
     orderData: Order | null,
@@ -51,7 +53,9 @@ function ShowContent(orderData: Order | null, orderNumber: string, setOrderData:
     const [isParametersModalOpen, setParametersModalIsOpen] = useState<boolean>(false)
     const [isDepositModalOpen, setDepositModalIsOpen] = useState<boolean>(false)
     const [isProcessModalOpen, setIsProcessModalOpen] = useState<boolean>(false)
+    const [isHistoryModalOpen, setIsHistoryModalOpen] = useState<boolean>(false)
 
+    const [historyId, setHistoryId] = useState<number>(0)
     const [lineId, setLineId] = useState<number>(0)
     const [boughtDepositId, setBoughtDepositId] = useState<number>(0)
     const [processId, setProcessId] = useState<string>('')
@@ -60,6 +64,7 @@ function ShowContent(orderData: Order | null, orderNumber: string, setOrderData:
         return
     }
 
+    const selectedHistory = getSelectedHistory(orderData, historyId)
     const selectedProcess = getSelectedProcess(orderData, processId)
     const selectedLine = getSelectedLine(orderData, lineId)
     const selectedDeposit = getSelectedBoughtDeposit(orderData, boughtDepositId)
@@ -82,6 +87,7 @@ function ShowContent(orderData: Order | null, orderNumber: string, setOrderData:
 
         {orderData.appliedDeposit.length > 0 && (<AppliedDeposits deposits={orderData.appliedDeposit}/>)}
 
+        {orderData.updateHistory.length > 0 && (<History histories={orderData.updateHistory} setHistoryId={setHistoryId} setIsHistoryModalOpen={setIsHistoryModalOpen}/>)}
         <OrderPayments payments={orderData.payments}/>
 
         <OrderProcesses
@@ -89,7 +95,8 @@ function ShowContent(orderData: Order | null, orderNumber: string, setOrderData:
             orderNumber={orderNumber}
             setOrderData={setOrderData}
             setProcessId={setProcessId}
-            setContextModalIsOpen={setIsProcessModalOpen}/>
+            setContextModalIsOpen={setIsProcessModalOpen}
+        />
 
         {isDiscountModalOpen && selectedLine !== null && (<DiscountModal
                 line={selectedLine}
@@ -106,6 +113,10 @@ function ShowContent(orderData: Order | null, orderNumber: string, setOrderData:
 
         {isProcessModalOpen && selectedProcess && (
             <ProcessContextModal process={selectedProcess} setContextModalIsOpen={setIsProcessModalOpen}/>
+        )}
+
+        {isHistoryModalOpen && selectedHistory && (
+            <HistoryModal history={selectedHistory} setIsHistoryModalOpen={setIsHistoryModalOpen}/>
         )}
     </div>
 }
@@ -142,6 +153,17 @@ function getSelectedProcess(orderData: Order, processId: string) {
         }
 
     return selectedProcess
+}
+
+function getSelectedHistory(orderData: Order, processId: string) {
+    let selectedHistory = null
+
+    const selectedHistories = orderData.updateHistory.filter(process => process.id === processId)
+    if (selectedHistories.length > 0) {
+        selectedHistory = selectedHistories.shift()
+    }
+
+    return selectedHistory
 }
 
 export default OrderSpecificationPageContentArea
