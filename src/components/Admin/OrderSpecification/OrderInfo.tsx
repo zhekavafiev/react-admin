@@ -5,20 +5,14 @@ interface OrderInfoProps {
 }
 
 function OrderInfo({order}: OrderInfoProps) {
-
-    let header = ''
-
-    if (order.isAbandoned) {
-        header = 'Информация по заказу. Заказ брошен'
-    } else {
-        header = 'Информация по заказу'
-    }
     return (
         <div>
-            <h3 className={'order__payments__grid-table'}>{header}</h3>
+            <h3 className={'order__payments__grid-table'}>Информация по заказу</h3>
+            {order.isAbandoned ? <div class={'order__payments__grid-table failed'}>Заказ брошен</div> : null}
             <div className="order__info__grid-table">
                 <div>ID</div><div>{order.id}</div>
                 <div>Номер</div><div>{order.orderNumber}</div>
+                <div className={order.isConfirmed ? 'success' : 'failed'}>Вывод в ЛК</div><div className={order.isConfirmed ? 'success' : 'failed'}>{order.isConfirmed ? 'Да' : 'Нет'}</div>
                 <div>Пользователь</div><div>{order.userId}</div>
                 <div>Телефон</div><div>{order.phone}</div>
                 <div>Тип</div><div>{order.type}</div>

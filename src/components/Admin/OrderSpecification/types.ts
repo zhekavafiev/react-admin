@@ -20,6 +20,7 @@ export interface Order {
     communicationMethod?: string,
     hasCalculation: boolean,
     isAbandoned: boolean | null,
+    isConfirmed: boolean,
     sum: number,
     finalSum: number,
     orderLines: OrderLine[],

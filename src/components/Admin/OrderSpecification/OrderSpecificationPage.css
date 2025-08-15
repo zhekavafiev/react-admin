@@ -372,3 +372,13 @@
     font-weight: 600;
     color: #2d3748;
 }
+
+.failed {
+    background: rgba(199, 21, 95, 0.4) !important;
+    color: #000000;
+}
+
+.success {
+    background: rgba(76, 175, 80, 0.28) !important;
+    color: #000000;
+}
