@@ -28,7 +28,29 @@ export interface Order {
     payments: OrderPayment[],
     boughtDeposit: BoughtDeposit[],
     appliedDeposit: AppliedDeposit[]
-    updateHistory: History[]
+    updateHistory: History[],
+    delivery: DeliveryResponse
+}
+
+export interface DeliveryResponse {
+    id: string;
+    provider: string;
+    name: string;
+    type: string;
+    currencyCode: string;
+    price: number;
+    taxes: number;
+    isCustomRecipient?: boolean;
+    courierComment?: string;
+    customRecipientName?: string;
+    customRecipientPhone?: string;
+    countryCode?: string;
+    address?: string;
+    street?: string;
+    house?: string;
+    apartment?: string;
+    zipCode?: string;
+    parcelLockerNumber?: string;
 }
 
 export interface History {

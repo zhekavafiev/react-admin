@@ -1,4 +1,5 @@
 import React, {Fragment} from "react";
+import type {Order} from './types.ts'
 
 interface OrderInfoProps {
     order: Order
@@ -26,7 +27,10 @@ function OrderInfo({order}: OrderInfoProps) {
                 <div>Метод коммуникации</div><div>{order.communicationMethod}</div>
                 <div>Имеется калькуляция</div><div>{order.hasCalculation  ? 'Да' : 'Нет'}</div>
                 <div>Сумма</div><div>{order.sum}</div>
-                <div>Финальная сумма</div><div>{order.finalSum}</div>
+                <div>Доставка</div><div>{order.delivery.name}</div>
+                <div>Стоимость доставки</div><div>{order.delivery.price}</div>
+                <div>Страна</div><div>{order.delivery.countryCode}</div>
+                <div>Адрес</div><div>{order.delivery.address}</div>
             </div>
         </div>
     )
