@@ -13,7 +13,7 @@ function OrderLines({lines, setLineId, setDiscountModalIsOpen, setParametersModa
         <div>
             <h3 className={'order__payments__grid-table'}>Товары</h3>
             <div className={'order__lines__grid-table'}>
-                <div>ID</div><div>Номер</div><div>КОД</div><div>ЦЕНА</div><div>Финальная Цена</div><div>ТИП</div><div>Статус</div><div>Параметры</div><div>Скидки</div>
+                <div>ID</div><div>Номер</div><div>КОД</div><div>ЦЕНА</div><div>Финальная Цена</div><div>Скидка менеджера</div><div>ТИП</div><div>Статус</div><div>Параметры</div><div>Скидки</div>
                 {lines.map(line => (
                     <Fragment key={line.number}>
                         {getProcessRow(line, setLineId, setDiscountModalIsOpen, setParametersModalIsOpen)}
@@ -47,6 +47,7 @@ function getProcessRow(
         <div>{line.skuCode}</div>
         <div>{line.price}</div>
         <div>{line.finalPrice}</div>
+        <div>{line.managerDiscount}</div>
         <div>{line.type}</div>
         <div className={line.status === 'Delivered' ? 'process__status__complited'
             : line.status === 'Cancel' ? 'process__status__failed'

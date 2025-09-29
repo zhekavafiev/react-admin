@@ -74,7 +74,8 @@ export interface OrderLine {
     type: string,
     status: string,
     parameters: object | null,
-    promotions: OrderLineDiscount[]
+    promotions: OrderLineDiscount[],
+    managerDiscount: string
 }
 
 export interface OrderLineDiscount {
