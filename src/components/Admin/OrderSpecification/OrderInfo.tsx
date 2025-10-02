@@ -26,7 +26,8 @@ function OrderInfo({order}: OrderInfoProps) {
                 <div>Создан</div><div>{order.createdAt}</div>
                 <div>Метод коммуникации</div><div>{order.communicationMethod}</div>
                 <div>Имеется калькуляция</div><div>{order.hasCalculation  ? 'Да' : 'Нет'}</div>
-                <div>Сумма</div><div>{order.sum}</div>
+                <div>Сумма заказа</div><div>{order.sum}</div>
+                <div>Сумма к оплате</div><div>{order.finalSum}</div>
                 <div>Доставка</div><div>{order.delivery.name}</div>
                 <div>Стоимость доставки</div><div>{order.delivery.price}</div>
                 <div>Страна</div><div>{order.delivery.countryCode}</div>
