@@ -13,6 +13,7 @@ export interface Order {
     status: string,
     currency: string,
     deviceClient: string,
+    calculationContext: string,
     isOnlineDeviceClient: boolean,
     bonusPoints: number,
     pointOfContact: string,
