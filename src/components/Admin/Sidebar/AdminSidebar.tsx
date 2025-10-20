@@ -1,6 +1,7 @@
 import './AdminSidebar.css'
 import {JSX} from "react";
 import OrderSpecificationPage from "../OrderSpecification";
+import FailedEvents from "../FailedEvents";
 
 interface AdminSidebar {
     isCollapsed: boolean,
@@ -14,6 +15,10 @@ function AdminSidebar({isCollapsed, setMainComponent, setCollapseSideBar}: Admin
         <div className={'sidebar__line'}>
             <div onClick={() => setMainComponent(<OrderSpecificationPage setCollapseSideBar={setCollapseSideBar}/>)}>📦</div>
             <div className={className} onClick={() => setMainComponent(<OrderSpecificationPage setCollapseSideBar={setCollapseSideBar}/>)}>Заказы</div>
+        </div>
+        <div className={'sidebar__line'}>
+            <div onClick={() => setMainComponent(<FailedEvents setCollapseSideBar={setCollapseSideBar} isCollapsed={isCollapsed}/>)}>❗</div>
+            <div className={className} onClick={() => setMainComponent(<FailedEvents setCollapseSideBar={setCollapseSideBar} isCollapsed={isCollapsed}/>)}>Ошибки</div>
         </div>
     </div>
 }

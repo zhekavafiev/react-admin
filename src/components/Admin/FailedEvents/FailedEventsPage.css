@@ -1,0 +1,24 @@
+.failed_events__grid-table {
+    display: grid;
+    grid-template-columns: 2fr 1fr 2fr 3fr 1fr 1fr;
+    border: 2px solid #000000;       /* Внешняя рамка */
+    border-collapse: collapse;
+}
+
+/* Границы и отступы для всех ячеек */
+.failed_events__grid-table > div {
+    border: 1px solid #000000;      /* Границы каждой ячейки */
+    padding: 8px 12px;              /* Отступы внутри ячеек */
+    font-size: 14px;
+
+    /* Переносы для длинного текста */
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+}
+
+/* Заголовки (первая строка) */
+.failed_events__grid-table > div:nth-child(-n+6) {
+    background: #f8f9fa;
+    font-weight: 600;
+    color: #2d3748;
+}

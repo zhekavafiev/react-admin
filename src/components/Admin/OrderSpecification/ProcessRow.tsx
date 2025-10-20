@@ -27,7 +27,6 @@ function ProcessRow({process, orderNumber, setOrderData, setContextModalIsOpen, 
 
         if (apiResponse.success) {
             const order = await fetchOrderByNumber(orderNumber)
-            console.log(order)
             setOrderData(order)
         }
         setIsLoading(false)
