@@ -22,3 +22,19 @@
     font-weight: 600;
     color: #2d3748;
 }
+
+.failed_events__clickable-order {
+    color: #2563eb;              /* Синий цвет текста */
+    cursor: pointer;             /* Курсор-указатель */
+    text-decoration: underline;  /* Подчеркивание */
+    font-weight: 500;
+}
+
+.failed_events__clickable-order:hover {
+    color: #1d4ed8;              /* Темнее при наведении */
+    background-color: #eff6ff;   /* Светло-синий фон */
+}
+
+.failed_events__clickable-order:active {
+    color: #1e40af;              /* Еще темнее при клике */
+}

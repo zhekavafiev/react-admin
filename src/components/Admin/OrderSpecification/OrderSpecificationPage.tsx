@@ -6,11 +6,12 @@ import type {Order} from './types'
 
 
 interface OrderSpecificationPageProps {
-    setCollapseSideBar: () => void
+    setCollapseSideBar: () => void,
+    orderData: Order | null,
+    setOrderData: () => void,
 }
 
-function OrderSpecificationPage({setCollapseSideBar}: OrderSpecificationPageProps) {
-    const [orderData, setOrderData] = useState<Order | null>(null)
+function OrderSpecificationPage({setCollapseSideBar, orderData, setOrderData}: OrderSpecificationPageProps) {
 
     return <div className={'main'}>
         <PageHeader/>

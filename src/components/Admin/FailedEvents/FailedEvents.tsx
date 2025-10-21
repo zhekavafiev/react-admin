@@ -1,21 +1,24 @@
-import {fetchFailedEvents} from "../services/orderService.tsx";
+import {fetchFailedEvents, fetchOrderByNumber} from "../services/orderService.tsx";
 import {useState, useEffect, Fragment} from "react";
 import type {FailedEvent} from "./types.ts";
 import './FailedEventsPage.css'
+import OrderSpecificationPage from "../OrderSpecification";
 
 interface FailedEventsProps {
     setCollapseSideBar: () => void,
-    isCollapsed: boolean,
+    setOrderData: () => void,
+    setMainComponent: () => void
 }
 
-function FailedEvents({setCollapseSideBar, isCollapsed}: FailedEventsProps) {
-    const [events, setEvents] = useState<FailedEvent[]>([])
+function FailedEvents({setCollapseSideBar, setOrderData, setMainComponent}: FailedEventsProps) {
 
+    setCollapseSideBar(true)
+
+    const [events, setEvents] = useState<FailedEvent[]>([])
     useEffect(() => {
         const loadEvents = async () => {
             try {
                 const data = await fetchFailedEvents()
-                setCollapseSideBar(! isCollapsed)
                 setEvents(data)
             } catch (e) {
                 console.error(e)
@@ -32,7 +35,7 @@ function FailedEvents({setCollapseSideBar, isCollapsed}: FailedEventsProps) {
                 <div>ID</div><div>Номер заказа</div><div>ID заказа</div><div>Событие</div><div>Дата</div><div>Количество Успешных после</div>
                 {events.map(event => (
                     <Fragment key={event.id}>
-                        {getRow(event)}
+                        {getRow(event, setOrderData, setMainComponent, setCollapseSideBar)}
                     </Fragment>
                 ))}
             </div>
@@ -40,14 +43,34 @@ function FailedEvents({setCollapseSideBar, isCollapsed}: FailedEventsProps) {
     )
 }
 
-function getRow(event: FailedEvent) {
+function getRow(
+    event: FailedEvent,
+    setOrderData: () => void,
+    setMainComponent: () => void,
+    setCollapseSideBar: () => void
+) {
+    const clickNumber = async (number: string) => {
+        const order = await fetchOrderByNumber(number)
+        setOrderData(order)
+        setMainComponent(<OrderSpecificationPage
+            setCollapseSideBar={setCollapseSideBar}
+            orderData={order}
+            setOrderData={setOrderData}
+        />)
+        console.log(order)
+    }
+
     return <>
         <div>{event.id}</div>
-        <div>{event.orderNumber}</div>
+        <div
+            className="failed_events__clickable-order"
+            onClick={() => clickNumber(event.orderNumber)}
+        >{event.orderNumber}</div>
         <div>{event.orderId}</div>
         <div>{event.event}</div>
         <div>{event.failedAt}</div>
         <div>{event.countEventsAfterFail}</div>
     </>
 }
+
 export default FailedEvents

@@ -60,7 +60,7 @@ function ShowContent(orderData: Order | null, orderNumber: string, setOrderData:
     const [boughtDepositId, setBoughtDepositId] = useState<number>(0)
     const [processId, setProcessId] = useState<string>('')
 
-    if (orderData === null) {
+    if (! orderData) {
         return
     }
 
