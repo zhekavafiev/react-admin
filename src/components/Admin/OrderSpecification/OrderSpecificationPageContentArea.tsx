@@ -1,5 +1,5 @@
 import './OrderSpecificationPage.css'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import OrderInfo from "./OrderInfo.tsx";
 import OrderProcesses from "./OrderProcesses.tsx";
 import OrderLines from "./OrderLines.tsx";
@@ -29,6 +29,13 @@ function OrderSpecificationPageContentArea({
     setCollapseSideBar
 }: ContentAreaProps) {
     const [orderNumber, setOrderNumber] = useState('')
+
+    useEffect(() => {
+        if (orderData) {
+            setOrderNumber(orderData.orderNumber)
+        }
+    }, [orderData])
+
     const [errorMessage, setErrorMessage] = useState<string>('')
 
     return (

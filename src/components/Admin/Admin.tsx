@@ -3,12 +3,12 @@ import AdminHeader from "./Header";
 import {useNavigate} from 'react-router-dom'
 import AdminSidebar from "./Sidebar";
 import OrderSpecificationPage from "./OrderSpecification";
+import FailedEvents from "./FailedEvents";
 import {useSidebar} from "./hooks/useSidebar.tsx";
-import {JSX, useState} from "react";
+import {useState} from "react";
+import type {Order} from "./OrderSpecification/types.ts";
 
-interface Admin {
-
-}
+type ComponentType = 'orders' | 'failedEvents';
 
 function Admin() {
     const navigate = useNavigate()
@@ -19,29 +19,44 @@ function Admin() {
 
     const {isCollapsed, toggle} = useSidebar()
 
-    const [mainComponent, setMainComponent] = useState<JSX.Element | null>(null)
+    const [activeComponent, setActiveComponent] = useState<ComponentType>('orders')
+    const [orderData, setOrderData] = useState<Order | null>(null)
 
     const className = isCollapsed
         ? 'admin-container admin-container__collapsed'
         : 'admin-container'
 
     return <>
-        {<AdminHeader
+        <AdminHeader
             title={'Poison Drop'}
             short_title={'PD'}
             setUserName={true}
             onLogout={handleLogout}
             isCollapsed={isCollapsed}
             onToggle={toggle}
-        />}
-        {/*{<AdminFooter/>}*/}
+        />
+
         <div className={className}>
-            {<AdminSidebar
+            <AdminSidebar
                 isCollapsed={isCollapsed}
-                setMainComponent={setMainComponent}
-                setCollapseSideBar={toggle}
-            />}
-            {mainComponent}
+                setActiveComponent={setActiveComponent}
+            />
+
+            {activeComponent === 'orders' && (
+                <OrderSpecificationPage
+                    setCollapseSideBar={toggle}
+                    orderData={orderData}
+                    setOrderData={setOrderData}
+                />
+            )}
+
+            {activeComponent === 'failedEvents' && (
+                <FailedEvents
+                    setCollapseSideBar={toggle}
+                    setOrderData={setOrderData}
+                    setActiveComponent={setActiveComponent}
+                />
+            )}
         </div>
     </>
 }

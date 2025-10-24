@@ -1,20 +1,23 @@
 import {fetchFailedEvents, fetchOrderByNumber} from "../services/orderService.tsx";
 import {useState, useEffect, Fragment} from "react";
 import type {FailedEvent} from "./types.ts";
+import type {Order} from "../OrderSpecification/types.ts";
 import './FailedEventsPage.css'
-import OrderSpecificationPage from "../OrderSpecification";
+
+type ComponentType = 'orders' | 'failedEvents';
 
 interface FailedEventsProps {
     setCollapseSideBar: () => void,
-    setOrderData: () => void,
-    setMainComponent: () => void
+    setOrderData: (order: Order | null) => void,
+    setActiveComponent: (component: ComponentType) => void
 }
 
-function FailedEvents({setCollapseSideBar, setOrderData, setMainComponent}: FailedEventsProps) {
+function FailedEvents({setCollapseSideBar, setOrderData, setActiveComponent}: FailedEventsProps) {
 
     setCollapseSideBar(true)
 
     const [events, setEvents] = useState<FailedEvent[]>([])
+
     useEffect(() => {
         const loadEvents = async () => {
             try {
@@ -35,7 +38,7 @@ function FailedEvents({setCollapseSideBar, setOrderData, setMainComponent}: Fail
                 <div>ID</div><div>Номер заказа</div><div>ID заказа</div><div>Событие</div><div>Дата</div><div>Количество Успешных после</div>
                 {events.map(event => (
                     <Fragment key={event.id}>
-                        {getRow(event, setOrderData, setMainComponent, setCollapseSideBar)}
+                        {getRow(event, setOrderData, setActiveComponent)}
                     </Fragment>
                 ))}
             </div>
@@ -45,18 +48,13 @@ function FailedEvents({setCollapseSideBar, setOrderData, setMainComponent}: Fail
 
 function getRow(
     event: FailedEvent,
-    setOrderData: () => void,
-    setMainComponent: () => void,
-    setCollapseSideBar: () => void
+    setOrderData: (order: Order | null) => void,
+    setActiveComponent: (component: ComponentType) => void
 ) {
     const clickNumber = async (number: string) => {
         const order = await fetchOrderByNumber(number)
         setOrderData(order)
-        setMainComponent(<OrderSpecificationPage
-            setCollapseSideBar={setCollapseSideBar}
-            orderData={order}
-            setOrderData={setOrderData}
-        />)
+        setActiveComponent('orders')
         console.log(order)
     }
 
