@@ -1,6 +1,6 @@
 .failed_events__grid-table {
     display: grid;
-    grid-template-columns: 2fr 1fr 2fr 3fr 1fr 1fr;
+    grid-template-columns: 0.3fr 2fr 1fr 2fr 3fr 1fr 1fr;
     border: 2px solid #000000;       /* Внешняя рамка */
     border-collapse: collapse;
 }

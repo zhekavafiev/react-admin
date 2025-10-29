@@ -35,10 +35,10 @@ function FailedEvents({setCollapseSideBar, setOrderData, setActiveComponent}: Fa
         <div>
             <h3 className={'failed_events__grid-table'}>События</h3>
             <div className={'failed_events__grid-table'}>
-                <div>ID</div><div>Номер заказа</div><div>ID заказа</div><div>Событие</div><div>Дата</div><div>Количество Успешных после</div>
-                {events.map(event => (
+                <div>Номер</div><div>ID</div><div>Номер заказа</div><div>ID заказа</div><div>Событие</div><div>Дата</div><div>Количество Успешных после</div>
+                {events.map((event, index) => (
                     <Fragment key={event.id}>
-                        {getRow(event, setOrderData, setActiveComponent)}
+                        {getRow(event, setOrderData, setActiveComponent, index)}
                     </Fragment>
                 ))}
             </div>
@@ -49,7 +49,8 @@ function FailedEvents({setCollapseSideBar, setOrderData, setActiveComponent}: Fa
 function getRow(
     event: FailedEvent,
     setOrderData: (order: Order | null) => void,
-    setActiveComponent: (component: ComponentType) => void
+    setActiveComponent: (component: ComponentType) => void,
+    index: int
 ) {
     const clickNumber = async (number: string) => {
         const order = await fetchOrderByNumber(number)
@@ -59,6 +60,7 @@ function getRow(
     }
 
     return <>
+        <div>{index + 1}</div>
         <div>{event.id}</div>
         <div
             className="failed_events__clickable-order"

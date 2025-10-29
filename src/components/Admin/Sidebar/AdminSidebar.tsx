@@ -20,7 +20,6 @@ function AdminSidebar({
     const onClickOrder = () => {
         setActiveComponent('orders');
         setOrderData(null)
-
     };
 
     const onClickFailedEvents = () => {
