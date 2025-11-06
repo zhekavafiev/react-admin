@@ -7,6 +7,7 @@ import FailedEvents from "./FailedEvents";
 import {useSidebar} from "./hooks/useSidebar.tsx";
 import {useState} from "react";
 import type {Order} from "./OrderSpecification/types.ts";
+import ProcessAnalytics from "./ProcessAnalitics";
 
 type ComponentType = 'orders' | 'failedEvents';
 
@@ -26,6 +27,8 @@ function Admin() {
         ? 'admin-container admin-container__collapsed'
         : 'admin-container'
 
+    console.log(activeComponent)
+
     return <>
         <AdminHeader
             title={'Poison Drop'}
@@ -39,6 +42,7 @@ function Admin() {
         <div className={className}>
             <AdminSidebar
                 isCollapsed={isCollapsed}
+                setOrderData={setOrderData}
                 setActiveComponent={setActiveComponent}
             />
 
@@ -50,9 +54,13 @@ function Admin() {
                 />
             )}
 
+            {activeComponent === 'processAnalytics' && (
+                <ProcessAnalytics
+                />
+            )}
+
             {activeComponent === 'failedEvents' && (
                 <FailedEvents
-                    setCollapseSideBar={toggle}
                     setOrderData={setOrderData}
                     setActiveComponent={setActiveComponent}
                 />

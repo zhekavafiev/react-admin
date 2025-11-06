@@ -1,0 +1,134 @@
+.analytics-container {
+    padding: 24px;
+    background: #f7fafc;
+    min-height: 100vh;
+}
+
+.analytics-header {
+    font-size: 24px;
+    font-weight: 600;
+    color: #2d3748;
+    margin-bottom: 24px;
+    padding-bottom: 16px;
+    border-bottom: 2px solid #e2e8f0;
+}
+
+.analytics-chart {
+    background: #ffffff;
+    padding: 24px;
+    border-radius: 12px;
+    border: 2px solid #e2e8f0;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.analytics-stats {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+    margin-bottom: 24px;
+}
+
+.analytics-stat-card {
+    background: #ffffff;
+    padding: 20px;
+    border-radius: 12px;
+    border: 2px solid #e2e8f0;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    transition: all 0.3s ease;
+}
+
+.analytics-stat-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.analytics-stat-card__label {
+    font-size: 14px;
+    color: #718096;
+    font-weight: 500;
+    margin-bottom: 8px;
+}
+
+.analytics-stat-card__value {
+    font-size: 32px;
+    font-weight: 700;
+    color: #2d3748;
+    line-height: 1;
+    margin-bottom: 4px;
+}
+
+.analytics-stat-card__percent {
+    font-size: 16px;
+    font-weight: 600;
+    margin-top: 4px;
+}
+
+/* Цветные акценты для разных типов */
+.analytics-stat-card--total {
+    border-left: 4px solid #4299e1;
+}
+
+.analytics-stat-card--total .analytics-stat-card__value {
+    color: #4299e1;
+}
+
+.analytics-stat-card--success {
+    border-left: 4px solid #4caf50;
+}
+
+.analytics-stat-card--success .analytics-stat-card__value {
+    color: #4caf50;
+}
+
+.analytics-stat-card--success .analytics-stat-card__percent {
+    color: #4caf50;
+}
+
+.analytics-stat-card--restored {
+    border-left: 4px solid #f6ad55;
+}
+
+.analytics-stat-card--restored .analytics-stat-card__value {
+    color: #f6ad55;
+}
+
+.analytics-stat-card--restored .analytics-stat-card__percent {
+    color: #f6ad55;
+}
+
+.analytics-stat-card--failed {
+    border-left: 4px solid #e53e3e;
+}
+
+.analytics-stat-card--failed .analytics-stat-card__value {
+    color: #e53e3e;
+}
+
+.analytics-stat-card--failed .analytics-stat-card__percent {
+    color: #e53e3e;
+}
+
+.analytics-stat-card--started {
+    border-left: 4px solid #00d1f5;
+}
+
+.analytics-stat-card--started .analytics-stat-card__value {
+    color: #00d1f5;
+}
+
+.analytics-stat-card--started .analytics-stat-card__percent {
+    color: #00d1f5;
+}
+
+/* Адаптив для маленьких экранов */
+@media (max-width: 1200px) {
+    .analytics-stats {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 768px) {
+    .analytics-stats {
+        grid-template-columns: 1fr;
+    }
+}

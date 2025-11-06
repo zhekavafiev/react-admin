@@ -11,7 +11,7 @@ function OrderDepositModal({deposit, setDepositModalIsOpen}: OrderDepositModalPr
     }
 
     return <div className={'modal__background'} onClick={() => setDepositModalIsOpen(false)}>
-        <div className={'modal'}>
+        <div className={'modal'} onClick={e => e.stopPropagation()}>
             <pre id="json">{JSON.stringify(parameters, null, 2)}</pre>
         </div>
     </div>

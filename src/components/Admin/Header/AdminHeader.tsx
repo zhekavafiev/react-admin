@@ -10,6 +10,8 @@ interface AdminHeaderProps {
     onToggle: () => void
 }
 
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL
+
 function AdminHeader({
      title,
      short_title,
@@ -48,6 +50,7 @@ function rightSide(userName, onLogout, setUserName) {
 
     return (
         <div className={'header__right'}>
+            {API_BASE_URL}
             {userNameElement}
             <button className={'header__button'} onClick={onLogout}>Выйти</button>
         </div>

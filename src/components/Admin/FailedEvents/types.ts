@@ -3,6 +3,7 @@ export interface FailedEvent {
     event: string,
     failedAt: string,
     id: string,
-    orderId: string
-    orderNumber: string
+    orderId: string,
+    orderNumber: string,
+    comment: string | null
 }
