@@ -8,8 +8,9 @@ import {useSidebar} from "./hooks/useSidebar.tsx";
 import {useState} from "react";
 import type {Order} from "./OrderSpecification/types.ts";
 import ProcessAnalytics from "./ProcessAnalitics";
+import Refund from "./Refund";
 
-type ComponentType = 'orders' | 'failedEvents';
+type ComponentType = 'orders' | 'failedEvents' | 'refund' | 'processAnalytics';
 
 function Admin() {
     const navigate = useNavigate()
@@ -61,6 +62,13 @@ function Admin() {
 
             {activeComponent === 'failedEvents' && (
                 <FailedEvents
+                    setOrderData={setOrderData}
+                    setActiveComponent={setActiveComponent}
+                />
+            )}
+
+            {activeComponent === 'refund' && (
+                <Refund
                     setOrderData={setOrderData}
                     setActiveComponent={setActiveComponent}
                 />

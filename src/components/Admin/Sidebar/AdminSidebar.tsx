@@ -1,7 +1,6 @@
 import './AdminSidebar.css'
-import type {Order} from "../OrderSpecification/types.ts";
 
-type ComponentType = 'orders' | 'failedEvents' | 'processAnalytics';
+type ComponentType = 'orders' | 'failedEvents' | 'refund' | 'processAnalytics';
 
 interface AdminSidebarProps {
     isCollapsed: boolean,
@@ -30,6 +29,10 @@ function AdminSidebar({
         setActiveComponent('processAnalytics')
     }
 
+    const onClickRefund = () => {
+        setActiveComponent('refund')
+    }
+
     return <div className={'sidebar'}>
         <div className={'sidebar__line'}>
             <div onClick={onClickOrder}>📦</div>
@@ -44,6 +47,11 @@ function AdminSidebar({
         <div className={'sidebar__line'}>
             <div onClick={onClickProcessAnalytics}>📈</div>
             <div className={className} onClick={onClickProcessAnalytics}>Аналитика процессов</div>
+        </div>
+
+        <div className={'sidebar__line'}>
+            <div onClick={onClickRefund}>🔙</div>
+            <div className={className} onClick={onClickRefund}>Возвраты</div>
         </div>
     </div>
 }

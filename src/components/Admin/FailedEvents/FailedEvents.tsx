@@ -1,5 +1,5 @@
 import {fetchFailedEvents, fetchOrderByNumber} from "../services/orderService.tsx";
-import {useState, useEffect, Fragment} from "react";
+import {useState, Fragment} from "react";
 import type {FailedEvent} from "./types.ts";
 import type {Order} from "../OrderSpecification/types.ts";
 import './FailedEventsPage.css'
@@ -7,7 +7,7 @@ import FailedEventCommentModal from "./FailedEventCommentModal.tsx";
 import "react-datepicker/dist/react-datepicker.css";
 import DateRangeFilter from "../../UI/DateRange";
 
-type ComponentType = 'orders' | 'failedEvents';
+type ComponentType = 'orders' | 'failedEvents' | 'refund' | 'processAnalytics';
 
 interface FailedEventsProps {
     setOrderData: (order: Order | null) => void,

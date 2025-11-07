@@ -2,6 +2,7 @@ import axios from 'axios'
 import type {Order, ApiResponse} from '../OrderSpecification/types'
 import type {FailedEvent} from "../FailedEvents/types.ts";
 import type {DailyProcessesStats} from "../ProcessAnalitics/types.ts";
+import type {Refund} from "../Refund/types.ts";
 
 export const fetchOrderByNumber: Promise<Order> = async (orderNumber: string) => {
     const response =  await axios.get(`/api/v1/order/specification?orderNumber=${orderNumber}`, {
@@ -70,4 +71,18 @@ export const getProcessStatistics = async (from: Date, to: Date): Promise<void> 
     }
 
     return apiResponse.data
+}
+
+export const fetchRefunds: Promise<Refund[]> = async () => {
+    const response =  await axios.post(`/api/v1/process_failed_refund_list`, {}, {
+        validateStatus: () => true
+    })
+
+    const apiResponse: ApiResponse<Refund[]> = response.data
+
+    if (apiResponse.success) {
+        return apiResponse.data
+    } else {
+        throw Error(apiResponse.message)
+    }
 }

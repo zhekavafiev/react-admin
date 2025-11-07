@@ -1,0 +1,62 @@
+.refund__grid-table {
+    display: grid;
+    grid-template-columns: 0.3fr 2fr 1fr 2fr 3fr;
+    border: 2px solid #000000;       /* Внешняя рамка */
+    border-collapse: collapse;
+}
+
+/* Границы и отступы для всех ячеек */
+.refund__grid-table > div {
+    border: 1px solid #000000;      /* Границы каждой ячейки */
+    padding: 8px 12px;              /* Отступы внутри ячеек */
+    font-size: 14px;
+
+    /* Переносы для длинного текста */
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+}
+
+/* Заголовки (первая строка) */
+.refund__grid-table > div:nth-child(-n+6) {
+    background: #f8f9fa;
+    font-weight: 600;
+    color: #2d3748;
+}
+
+.refund__clickable-order {
+    color: #2563eb;              /* Синий цвет текста */
+    cursor: pointer;             /* Курсор-указатель */
+    text-decoration: underline;  /* Подчеркивание */
+    font-weight: 500;
+}
+
+.refund__clickable-order:hover {
+    color: #1d4ed8;              /* Темнее при наведении */
+    background-color: #eff6ff;   /* Светло-синий фон */
+}
+
+.refund__clickable-order:active {
+    color: #1e40af;              /* Еще темнее при клике */
+}
+
+.failed {
+    background: rgba(199, 21, 95, 0.4) !important;
+    color: #000000;
+}
+
+.success {
+    background: rgba(76, 175, 80, 0.28) !important;
+    color: #000000;
+}
+
+.modal__background {
+    height: 100vh;
+    width: 100vw;
+    background-color: rgba(0, 0, 0, 0.5);
+    position: fixed;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    top: 0;
+    left: 0;
+}
