@@ -48,6 +48,13 @@ function DateRangeFilter({ onApply, label = "📅 Период:" }: DateRangeFil
             >
                 Месяц
             </button>
+
+            <button
+                className="date-filter__quick-button"
+                onClick={() => setQuickFilter(365)}
+            >
+                Год
+            </button>
         </div>
 
         <DatePicker
