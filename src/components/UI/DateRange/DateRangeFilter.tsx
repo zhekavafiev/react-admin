@@ -18,8 +18,9 @@ function DateRangeFilter({ onApply, label = "📅 Период:" }: DateRangeFil
 
     const setQuickFilter = (days: number) => {
         const to = new Date()
+        to.setDate(to.getDate() + 1)
         const from = new Date()
-        from.setDate(from.getDate() - days)
+        from.setDate(from.getDate() + 1 - days)
 
         setDateFrom(from)
         setDateTo(to)

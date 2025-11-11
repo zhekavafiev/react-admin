@@ -6,6 +6,7 @@ import './FailedEventsPage.css'
 import FailedEventCommentModal from "./FailedEventCommentModal.tsx";
 import "react-datepicker/dist/react-datepicker.css";
 import DateRangeFilter from "../../UI/DateRange";
+import { Tooltip } from 'react-tooltip';
 
 type ComponentType = 'orders' | 'failedEvents' | 'refund' | 'processAnalytics';
 
@@ -80,6 +81,11 @@ function Table({
                 </Fragment>
             ))}
         </div>
+        <Tooltip
+            id="comment-tooltip"
+            place="top"
+            delayShow={300}
+        />
     </div>
 }
 
@@ -118,7 +124,15 @@ function getRow(
         <div
             className={'failed_events__comment-cell' + (event.comment ? ' failed_events__comment-cell--has-comment' : '')}
             onClick={() => onClickComment(event.comment)}
+            {...(event.comment && {
+                'data-tooltip-id': 'comment-tooltip',
+                'data-tooltip-content': event.comment,
+            })}
         >💬</div>
+
+        <Tooltip
+            id="tooltip-anchor-show"
+        />
     </>
 }
 
