@@ -6,11 +6,15 @@ locally:;@:
 ##
 ## Проект
 ## ------
+install:
+	docker compose exec -it react-admin pnpm i
+
 react:
 	docker compose exec react-admin sh
 
 up: ## Запустить приложение
 	docker compose up --build --detach --remove-orphans --force-recreate
+	$(MAKE) install
 .PHONY: up
 
 down: ## Остановить приложение

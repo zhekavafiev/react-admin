@@ -7,7 +7,7 @@ function DiscountModal({line, setModalIsOpen}: DiscountModalProps) {
     const promotions=line.promotions
     return (
         <div className={'modal__background'} onClick={() => setModalIsOpen(false)}>
-            <div className={'modal'}>
+            <div className={'modal'} onClick={e => e.stopPropagation()}>
                 <table>
                     <caption>Скидки линии номер {line.number} СКУ {line.skuCode}</caption>
                     <thead>
