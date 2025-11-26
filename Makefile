@@ -7,7 +7,7 @@ locally:;@:
 ## Проект
 ## ------
 install:
-	docker compose exec -it react-admin pnpm i
+	docker compose exec -it react-admin pnpm i --frozen-lockfile
 
 react:
 	docker compose exec react-admin sh

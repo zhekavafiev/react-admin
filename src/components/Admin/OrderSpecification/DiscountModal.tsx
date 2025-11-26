@@ -16,7 +16,7 @@ function DiscountModal({line, setModalIsOpen}: DiscountModalProps) {
                         <th>Код</th>
                         <th>Имя</th>
                         <th>Скидка</th>
-                        <th>Скидка в процентах</th>
+                        <th>Скидка  в процентах</th>
                         <th>Тип</th>
                     </tr>
                     </thead>
