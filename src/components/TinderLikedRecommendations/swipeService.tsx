@@ -16,10 +16,10 @@ export const fetchSessionStart = async () => {
     }
 }
 
-export const fetchLike = async (sessionId: string, itemCode: string) => {
+export const fetchLike = async (sessionId: string, itemId: string) => {
     const response =  await axios.post(`/pd/frontend/like`, {
         'sessionId': sessionId,
-        'itemCode': itemCode
+        'itemId': itemId
     }, {
         validateStatus: () => true
     })
@@ -36,7 +36,7 @@ export const fetchLike = async (sessionId: string, itemCode: string) => {
 export const fetchDislike = async (sessionId: string, itemCode: string) => {
     const response =  await axios.post(`/pd/frontend/dislike`, {
         'sessionId': sessionId,
-        'itemCode': itemCode
+        'itemId': itemId
     }, {
         validateStatus: () => true
     })

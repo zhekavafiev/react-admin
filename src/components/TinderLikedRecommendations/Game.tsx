@@ -1,35 +1,38 @@
 import { useState } from "react";
 import { fetchSessionStart, fetchLike, fetchDislike } from "./swipeService";
-import type { SessionData, Product } from "./types";
+import type { ProductResponse } from "./types";
 
 function Game() {
-    const [session, setSession] = useState<SessionData | null>(null);
+    const [product, setProduct] = useState<ProductResponse | null>(null);
+    const [sessionId, setSessionId] = useState<string | null>(null);
 
     const handleStart = async () => {
         const data = await fetchSessionStart();
-        setSession(data);
+        setProduct(data.product);
+        setSessionId(data.sessionId)
     };
 
     const handleLike = async () => {
-        const data = await fetchLike(session.sessionId, session.product.id);
-        setSession(data);
+        const data = await fetchLike(sessionId, product.id);
+        setProduct(data.product);
+        setSessionId(data.sessionId)
     };
 
     const handleDislike = async () => {
-        const data = await fetchDislike(session.sessionId, session.product.id);
-        setSession(data);
+        const data = await fetchDislike(sessionId, product.id);
+        setProduct(data.product);
+        setSessionId(data.sessionId)
     };
 
-    if (!session) {
+    if (!product) {
         return <button onClick={handleStart}>Начать</button>;
     }
 
     return (
         <div>
-            <ProductCard product={session.product} />
+            <ProductCard product={product} />
             <button onClick={handleLike}>❤️</button>
             <button onClick={handleDislike}>👎</button>
-            <p>{session.progress.current} / {session.progress.total}</p>
         </div>
     );
 }
