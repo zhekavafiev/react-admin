@@ -1,47 +1,47 @@
-import {fetchFailedEvents} from "../Admin/services/orderService.tsx";
-import {fetchDislike, fetchLike, fetchSessionStart} from "./swipeService.tsx";
-import {useState} from "react";
+import { useState } from "react";
+import { fetchSessionStart, fetchLike, fetchDislike } from "./swipeService";
+import type { SessionData, Product } from "./types";
 
-interface GameProps {
-    
+function Game() {
+    const [session, setSession] = useState<SessionData | null>(null);
+
+    const handleStart = async () => {
+        const data = await fetchSessionStart();
+        setSession(data);
+    };
+
+    const handleLike = async () => {
+        const data = await fetchLike(session.sessionId, session.product.id);
+        setSession(data);
+    };
+
+    const handleDislike = async () => {
+        const data = await fetchDislike(session.sessionId, session.product.id);
+        setSession(data);
+    };
+
+    if (!session) {
+        return <button onClick={handleStart}>Начать</button>;
+    }
+
+    return (
+        <div>
+            <ProductCard product={session.product} />
+            <button onClick={handleLike}>❤️</button>
+            <button onClick={handleDislike}>👎</button>
+            <p>{session.progress.current} / {session.progress.total}</p>
+        </div>
+    );
 }
 
-function Game({}: GameProps) {
-    const [data, setData] = useState(null);
-
-    const handleClick = async (setData) => {
-        try {
-            const data = await fetchSessionStart()
-            setData(data)
-        } catch (e) {
-            console.error(e)
-        }
-    }
-
-    const handleLike = async (setData) => {
-        try {
-            const data = await fetchLike('1', '2')
-            setData(data)
-        } catch (e) {
-            console.error(e)
-        }
-    }
-
-    const handleDislike = async (setData) => {
-        try {
-            const data = await fetchDislike()
-            setData(data)
-        } catch (e) {
-            console.error(e)
-        }
-    }
-
-    console.log(data)
-    return <div>
-        <div onClick={() => handleClick(setData)}>start</div>
-        <div onClick={() => handleLike(setData)}>like</div>
-        <div onClick={() => handleDislike(setData)}>dislike</div>
-    </div>
+function ProductCard({ product }: { product: Product }) {
+    return (
+        <div>
+            <img src={product.imageUrl} alt={product.name} width="300" />
+            <h3>{product.name}</h3>
+            <p>{product.price} ₽</p>
+        </div>
+    );
 }
 
-export default Game
+export default Game;

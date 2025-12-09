@@ -1,10 +1,10 @@
 export interface StartResponse {
     sessionId: string,
-    product: StartProduct
-    progress: StartProgress
+    product: ProductResponse
+    progress: ProgressResponse
 }
 
-export interface StartProduct {
+export interface ProductResponse {
     id: string
     name: string
     imageUrl: string
@@ -12,7 +12,7 @@ export interface StartProduct {
     price: number
 }
 
-export interface StartProgress {
+export interface ProgressResponse {
     current: number,
     total: number
 }
