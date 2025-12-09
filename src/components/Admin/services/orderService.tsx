@@ -22,7 +22,7 @@ export const fetchFailedEvents: Promise<FailedEvent[]> = async (from: Date, to: 
     const fromStr = from?.toISOString().split('T')[0] ?? "2025-01-01"
     const toStr = to?.toISOString().split('T')[0] ?? "2030-11-01"
 
-    const response =  await axios.post(`/api/v1/process_failed`, {
+    const response =  await axios.post(`/api/admin/v1/process_failed`, {
         "from": fromStr,
         "to": toStr,
     }, {
@@ -39,7 +39,7 @@ export const fetchFailedEvents: Promise<FailedEvent[]> = async (from: Date, to: 
 }
 
 export const updateFailedEventComment = async (processId: string, comment: string): Promise<void> => {
-    const response = await axios.post(`/api/v1/process_comment`, {
+    const response = await axios.post(`/api/admin/v1/process_comment`, {
         processId,
         comment
     }, {
@@ -57,7 +57,7 @@ export const getProcessStatistics = async (from: Date, to: Date): Promise<void> 
     const fromStr = from?.toISOString().split('T')[0] ?? "2025-01-01"
     const toStr = to?.toISOString().split('T')[0] ?? "2030-11-01"
 
-    const response = await axios.post(`/api/v1/process_statistics`, {
+    const response = await axios.post(`/api/admin/v1/process_statistics`, {
         "from": fromStr,
         "to": toStr
     }, {
@@ -74,7 +74,7 @@ export const getProcessStatistics = async (from: Date, to: Date): Promise<void> 
 }
 
 export const fetchRefunds: Promise<Refund[]> = async () => {
-    const response =  await axios.post(`/api/v1/process_failed_refund_list`, {}, {
+    const response =  await axios.post(`/api/admin/v1/process_failed_refund_list`, {}, {
         validateStatus: () => true
     })
 
