@@ -7,6 +7,7 @@ export interface StartResponse {
 export interface ProductResponse {
     id: string
     name: string
+    designer: string
     imageUrl: string
     productUrl: string
     price: number
@@ -14,5 +15,6 @@ export interface ProductResponse {
 
 export interface ProgressResponse {
     current: number,
-    total: number
+    total: number,
+    hasEnoughInformation: boolean
 }

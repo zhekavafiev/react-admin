@@ -1,0 +1,123 @@
+/* Game.module.css */
+
+.container {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #ffffff;
+    padding: 20px;
+}
+
+.card {
+    background: #ffffff;
+    max-width: 500px;
+    width: 100%;
+}
+
+.productImage {
+    width: 100%;
+    height: 500px;
+    object-fit: contain;
+    background: #fafafa;
+    margin-bottom: 30px;
+}
+
+.productName {
+    font-size: 16px;
+    font-weight: 400;
+    margin-bottom: 12px;
+    color: #000000;
+    text-align: center;
+    line-height: 1.5;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+}
+
+.productPrice {
+    font-size: 18px;
+    font-weight: 400;
+    color: #000000;
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.buttons {
+    display: flex;
+    gap: 40px;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 30px;
+}
+
+.button {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    border: 1px solid #000000;
+    background: white;
+    font-size: 24px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.button:hover {
+    background: #000000;
+    color: white;
+}
+
+.button:active {
+    transform: scale(0.95);
+}
+
+.dislikeButton {
+    color: #000000;
+}
+
+.likeButton {
+    color: #000000;
+}
+
+.progress {
+    text-align: center;
+    font-size: 13px;
+    color: #666666;
+    font-weight: 400;
+    letter-spacing: 1px;
+}
+
+.startButton {
+    padding: 16px 40px;
+    font-size: 14px;
+    background: transparent;
+    color: #000000;
+    border: 1px solid #000000;
+    cursor: pointer;
+    font-weight: 400;
+    letter-spacing: 1px;
+    text-transform: lowercase;
+    transition: all 0.2s ease;
+}
+
+.startButton:hover {
+    background: #000000;
+    color: white;
+}
+/* В конец Game.module.css */
+
+.catalogLink {
+    display: block;
+    text-align: center;
+    margin-top: 20px;
+    font-size: 14px;
+    color: #000000;
+    text-decoration: none;
+    letter-spacing: 1px;
+    transition: opacity 0.2s ease;
+}
+
+.catalogLink:hover {
+    opacity: 0.6;
+}
