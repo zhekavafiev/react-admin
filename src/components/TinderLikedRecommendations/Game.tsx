@@ -29,6 +29,11 @@ function Game() {
         setProgress(data.progress)
     };
 
+
+    let progressFinished = progress === null ? false : progress.current >= progress.total
+    console.log(progress)
+    console.log(progressFinished)
+
     if (!product) {
         return (
             <div className={'container'}>
@@ -48,12 +53,14 @@ function Game() {
                     <button
                         className={`${'button'} ${'dislikeButton'}`}
                         onClick={handleDislike}
+                        disabled={progressFinished}
                     >
                         ×
                     </button>
                     <button
                         className={`${'button'} ${'likeButton'}`}
                         onClick={handleLike}
+                        disabled={progressFinished}
                     >
                         ♥
                     </button>
@@ -63,7 +70,7 @@ function Game() {
                     {progress.current} / {progress.total}
                 </p>
 
-                {progress.hasEnoughInformation && <a
+                {(progress.hasEnoughInformation || progressFinished) && <a
                     href={`http://localhost:8088/catalog/kole?session=${sessionId}`}
                     className={'catalogLink'}
                     target="_blank"
@@ -78,11 +85,17 @@ function Game() {
 function ProductCard({ product }: { product: Product }) {
     return (
         <>
-            <img
-                src={product.imageUrl}
-                alt={product.name}
-                className={'productImage'}
-            />
+            <a
+                href={product.productUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+            >
+                <img
+                    src={product.imageUrl}
+                    alt={product.name}
+                    className={'productImage'}
+                />
+            </a>
             <h3 className={'productName'}>{product.name}</h3>
             <h3 className={'productName'}>{product.designer}</h3>
             <p className={'productPrice'}>{product.price.toLocaleString('ru-RU')} ₽</p>

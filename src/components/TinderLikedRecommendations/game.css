@@ -121,3 +121,8 @@
 .catalogLink:hover {
     opacity: 0.6;
 }
+
+.button:disabled {
+    opacity: 0.3;
+    cursor: not-allowed;
+}
