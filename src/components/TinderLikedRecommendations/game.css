@@ -13,6 +13,9 @@
     background: #ffffff;
     max-width: 500px;
     width: 100%;
+    border: 1px solid #e0e0e0;
+    padding: 30px;
+    border-radius: 8px;
 }
 
 .productImage {
@@ -21,6 +24,8 @@
     object-fit: contain;
     background: #fafafa;
     margin-bottom: 30px;
+    border: 1px solid #e0e0e0;
+    border-radius: 4px;
 }
 
 .productName {
