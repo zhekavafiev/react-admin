@@ -8,7 +8,8 @@ export interface ProductResponse {
     id: string
     name: string
     designer: string
-    imageUrl: string
+    frontImageUrl: string | null
+    onModelImageUrl: string | null
     productUrl: string
     price: number
 }
