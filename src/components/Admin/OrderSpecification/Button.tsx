@@ -14,7 +14,6 @@ function Button({ orderNumber, setOrderData, setCollapseSideBar, setErrorMessage
         try {
             const order = await fetchOrderByNumber(orderNumber)
             setOrderData(order)
-            setCollapseSideBar()
         } catch (e) {
             setErrorMessage(e.message)
         }
