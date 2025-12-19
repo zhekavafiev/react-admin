@@ -17,5 +17,6 @@ export interface ProductResponse {
 export interface ProgressResponse {
     current: number,
     total: number,
-    hasEnoughInformation: boolean
+    hasEnoughInformation: boolean,
+    isGameStarted: boolean,
 }

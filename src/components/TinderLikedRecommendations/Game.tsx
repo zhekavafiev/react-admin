@@ -44,8 +44,6 @@ function Game() {
 
 
     let progressFinished = progress === null ? false : progress.current >= progress.total
-    console.log(progress)
-    console.log(progressFinished)
 
     if (!product) {
         return (
@@ -79,7 +77,7 @@ function Game() {
                     </button>
                 </div>
 
-                <div className={'progressContainer'}>
+                {progress.isGameStarted && <div className={'progressContainer'}>
                     <p className={'progressText'}>
                         {progress.current} / {progress.total}
                     </p>
@@ -87,7 +85,8 @@ function Game() {
                         now={(progress.current / progress.total) * 100}
                         className={'progressBar'}
                     />
-                </div>
+                </div>}
+
 
                 {(progress.hasEnoughInformation || progressFinished) && <a
                     href={`http://localhost:8088/catalog/kole?session=${sessionId}`}
